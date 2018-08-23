@@ -15,6 +15,13 @@ import java.util.*;
  */
 public class EmployeeTest {
 
+    private int compare(String o1, String e2) {
+        return o1.length() - e2.length();
+    }
+    private static int compareS(String o1, String e2) {
+        return o1.length() - e2.length();
+    }
+
     @Test
     public void testComparable() {
         Employee tom = new Employee("Tom", 18, "男");
@@ -86,9 +93,19 @@ public class EmployeeTest {
 
         // 排序, 使用的是 类名::实例方法
         Arrays.sort(arr, String::compareTo);
+
+        sort(arr, EmployeeTest::compareS);
+
+        sort(arr, this::compare);
         // Arrays.sort(arr, s1, s2 ->)
         // lambda 表达式截取
-        list.forEach(s -> System.out.println(s.substring(5)));
+        list.forEach(s -> System.out.println(s.substring(2)));
     }
+
+    public void sort(String[] arr, Comparator<String> c){
+        Arrays.sort(arr, c);
+    }
+
+
 
 }
