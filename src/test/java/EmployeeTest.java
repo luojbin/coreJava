@@ -1,11 +1,9 @@
 import com.loyofo.core.s6_interface.Employee;
 import com.loyofo.core.s6_interface.EmpployeeAgeComparator;
 import com.loyofo.core.s6_interface.EmpployeeNameComparator;
-import com.loyofo.core.s6_interface.Manager;
-import com.sun.xml.internal.messaging.saaj.soap.ver1_1.Envelope1_1Impl;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
+import javax.swing.border.EtchedBorder;
 import java.util.*;
 
 /**
@@ -13,12 +11,18 @@ import java.util.*;
  * @version 1.0
  * @create 2018-08-23 11:18
  */
-public class EmployeeTest {
+public class EmployeeTest implements Comparable<EmployeeTest>{
 
-    private int compare(String o1, String e2) {
+    private int instanceCompare(String o1, String e2) {
         return o1.length() - e2.length();
     }
-    private static int compareS(String o1, String e2) {
+
+    @Override
+    public int compareTo(EmployeeTest o1) {
+        return 1;
+    }
+
+    private static int staticCompare(String o1, String e2) {
         return o1.length() - e2.length();
     }
 
@@ -91,12 +95,36 @@ public class EmployeeTest {
         // 方法引用输出, 使用的是 对象::实例方法
         list.forEach(System.out::println);
 
-        // 排序, 使用的是 类名::实例方法
+        // 数据准备
+        EmployeeTest et = new EmployeeTest();
+        Employee e = new Employee("aa", 12, "df");
+        Employee f = new Employee("aa", 12, "df");
+        Employee g = new Employee("aa", 12, "df");
+        Employee[] es = {e,f,g};
+
+        EmployeeTest et1 = new EmployeeTest();
+        EmployeeTest et2 = new EmployeeTest();
+        EmployeeTest et3 = new EmployeeTest();
+        EmployeeTest[] ets ={et1, et2, et3};
+
+        // 类名::静态方法
+        Arrays.sort(arr, EmployeeTest::staticCompare);
+        Arrays.sort(arr, EmployeeTest::staticCompare);
+
+        // 类名::实例方法
         Arrays.sort(arr, String::compareTo);
+        Arrays.sort(es, Employee::compareTo);
+        Arrays.sort(ets, EmployeeTest::compareTo);
 
-        sort(arr, EmployeeTest::compareS);
+        // 对象::实例方法
+        Arrays.sort(arr, this::instanceCompare);
+        Arrays.sort(arr, et::instanceCompare);
 
-        sort(arr, this::compare);
+        // String s = "sss";
+        // Arrays.sort(arr, s::compareTo);
+
+
+
         // Arrays.sort(arr, s1, s2 ->)
         // lambda 表达式截取
         list.forEach(s -> System.out.println(s.substring(2)));
@@ -105,7 +133,7 @@ public class EmployeeTest {
     public void sort(String[] arr, Comparator<String> c){
         Arrays.sort(arr, c);
     }
-
-
-
+    public static void staticSort(String[] arr, Comparator<String> c){
+        Arrays.sort(arr, c);
+    }
 }

@@ -61,4 +61,8 @@ public class Employee implements Comparable<Employee> {
     public int compareTo(Employee o) {
         return this.age - o.age;
     }
+
+    public int compareToBYname(Employee o) {
+        return this.name.compareTo(o.name);
+    }
 }
