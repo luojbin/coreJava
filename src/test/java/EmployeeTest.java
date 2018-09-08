@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import javax.swing.border.EtchedBorder;
 import java.util.*;
+import java.util.regex.Pattern;
 
 /**
  * @author luojbin
@@ -57,6 +58,8 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
             System.out.println(employee);
         }
 
+        // TODO_LUOJBIN:
+        System.out.println();
         System.out.println("按匿名内部类, 名字长度排序后:");
         Arrays.sort(list, new Comparator<Employee>(){
             @Override
@@ -136,4 +139,12 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
     public static void staticSort(String[] arr, Comparator<String> c){
         Arrays.sort(arr, c);
     }
+
+    @Test
+    public void teststr() {
+        int a = 1;
+    }
 }
+
+
+

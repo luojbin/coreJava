@@ -1,4 +1,4 @@
-package com.loyofo.core.s6_interface.methodRefer;
+package com.loyofo.core.s6_interface.e2_lambda.methodRefer;
 
 /**
  * @author luojbin
