@@ -111,18 +111,51 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
         EmployeeTest et3 = new EmployeeTest();
         EmployeeTest[] ets ={et1, et2, et3};
 
-        // 类名::静态方法
+        /*
+         * Arrays.sort(array, Comparator)
+         * 此处需要一个 Comparator, 然后会调用其中的 compare (t1, t2) 方法, 是一个双参数方法
+         * 传统方式是传入一个匿名内部类, 实现 compare(t1,t2) 方法
+         */
+        Arrays.sort(arr, new Comparator<String>(){
+            @Override
+            public int compare(String s1, String s2) {
+                return s1.length() - s2.length();
+            }
+        });
+
+        /*
+         * 但其实有用的部分, 只是 compare 方法的方法体, 其余内容都是为了满足语法需要的结构
+         * 为了减少格式代码, 提高可读性, 可以将方法体以 lambda 表达式的形式给出
+         * 这里可以使用一个 lambda 表达式, 该表达式的内容, 将成为 compare(t1, t2) 方法的方法体
+         * 此处的 lambda 表达式, 参数列表与 Comparator.compare 方法保持一致, 因为两者是等价的.
+         */
+        Arrays.sort(arr, (String s1, String s2) -> s1.length() - s2.length());
+        /** 类型明确时, 可以省略参数类型声明 */
+        Arrays.sort(arr, (s1, s2) -> s1.length() - s2.length());
+
+
+
+        /*
+         * 函数式接口
+         * 在上例中, lambda 并没有明确告知它要替代哪一个方法, 但是却能知道它就是 compare 方法
+         * 这是因为 Arrays.sort(arr, Comparator) 中, Comparator 就只有一个 compare 方法
+         * 这种只有一个抽象方法的接口, 才能唯一确定 lambda 到底是谁, 因此 lambda 也只能用来替代这种只有一个方法的接口
+         * 这样的接口, 原本需要的对象可以被一个函数替代, 称为函数式接口
+         */
+
+        // 类名::静态方法 staticCompare(s1, s2), 与 Comparator.compare(s1, s2) 一样
         Arrays.sort(arr, EmployeeTest::staticCompare);
         Arrays.sort(arr, EmployeeTest::staticCompare);
 
-        // 类名::实例方法
+        // 对象::实例方法 instanceCompare(s1, s2), 与 Comparator.compare(s1, s2) 一样
+        Arrays.sort(arr, this::instanceCompare);
+        Arrays.sort(arr, et::instanceCompare);
+
+        // 类名::实例方法 s1.compareTo(s2), 这与 Comparator.compare(s1, s2) 不同, 但也有 s1, s2 两个部分
+        // 因此在执行时, 会将 Comparator.compare(s1, s2) 的第一个参数作为这个方法的调用方, 第二个参数作为方法参数
         Arrays.sort(arr, String::compareTo);
         Arrays.sort(es, Employee::compareTo);
         Arrays.sort(ets, EmployeeTest::compareTo);
-
-        // 对象::实例方法
-        Arrays.sort(arr, this::instanceCompare);
-        Arrays.sort(arr, et::instanceCompare);
 
         // String s = "sss";
         // Arrays.sort(arr, s::compareTo);
