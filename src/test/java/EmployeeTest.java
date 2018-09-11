@@ -143,24 +143,68 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
          * 这样的接口, 原本需要的对象可以被一个函数替代, 称为函数式接口
          */
 
-        // 类名::静态方法 staticCompare(s1, s2), 与 Comparator.compare(s1, s2) 一样
+        // 类名::静态方法
+        // 需要: new Comparator().compare(String s1, String s2)
+        // 提供: EmployeeTest.staticCompare(String s1, String s2)
+        // staticCompare(s1, s2), 与 Comparator.compare(s1, s2) 一样
         Arrays.sort(arr, EmployeeTest::staticCompare);
-        Arrays.sort(arr, EmployeeTest::staticCompare);
+        Arrays.sort(arr, new Comparator<String>(){
+            @Override
+            public int compare(String o1, String o2) {
+                return EmployeeTest.staticCompare(o1, o2);
+            }
+        });
 
-        // 对象::实例方法 instanceCompare(s1, s2), 与 Comparator.compare(s1, s2) 一样
-        Arrays.sort(arr, this::instanceCompare);
-        Arrays.sort(arr, et::instanceCompare);
+        // 对象::实例方法
+        // 需要: new Comparator().compare(String s1, String s2)
+        // 提供: new EmployeeTest().instanceCompare(String o1, String e2)
+        // instanceCompare(s1, s2), 与 Comparator.compare(s1, s2) 一样
+        Arrays.sort(arr, new EmployeeTest()::instanceCompare);
+        Arrays.sort(arr, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return new EmployeeTest().instanceCompare(o1, o2);
+            }
+        });
 
-        // 类名::实例方法 s1.compareTo(s2), 这与 Comparator.compare(s1, s2) 不同, 但也有 s1, s2 两个部分
+        // 类名::实例方法
+        // 需要: new Comparator().compare(String s1, String s2)
+        // 提供: s1.compareTo(String, s2)
+        // s1.compareTo(s2), 这与 Comparator.compare(s1, s2) 不同, 但也有 s1, s2 两个部分
         // 因此在执行时, 会将 Comparator.compare(s1, s2) 的第一个参数作为这个方法的调用方, 第二个参数作为方法参数
         Arrays.sort(arr, String::compareTo);
+        Arrays.sort(arr, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+
         Arrays.sort(es, Employee::compareTo);
+        Arrays.sort(es, new Comparator<Employee>() {
+            @Override
+            public int compare(Employee o1, Employee o2) {
+                return o1.compareTo(o2);
+            }
+        });
+
+        Arrays.sort(es, Employee::compareToBYname);
+        Arrays.sort(es, new Comparator<Employee>() {
+            @Override
+            public int compare(Employee o1, Employee o2) {
+                return o1.compareToBYname(o2);
+            }
+        });
         Arrays.sort(ets, EmployeeTest::compareTo);
+        Arrays.sort(ets, new Comparator<EmployeeTest>() {
+            @Override
+            public int compare(EmployeeTest o1, EmployeeTest o2) {
+                return o1.compareTo(o2);
+            }
+        });
 
         // String s = "sss";
         // Arrays.sort(arr, s::compareTo);
-
-
 
         // Arrays.sort(arr, s1, s2 ->)
         // lambda 表达式截取
