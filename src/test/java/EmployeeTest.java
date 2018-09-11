@@ -1,11 +1,9 @@
-import com.loyofo.core.s6_interface.Employee;
-import com.loyofo.core.s6_interface.EmpployeeAgeComparator;
-import com.loyofo.core.s6_interface.EmpployeeNameComparator;
+import com.loyofo.core.s6_interface.e0_demo.Employee;
+import com.loyofo.core.s6_interface.e0_demo.EmpployeeAgeComparator;
+import com.loyofo.core.s6_interface.e0_demo.EmpployeeNameComparator;
 import org.junit.Test;
 
-import javax.swing.border.EtchedBorder;
 import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * @author luojbin

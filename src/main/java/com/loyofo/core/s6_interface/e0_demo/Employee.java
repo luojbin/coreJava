@@ -1,4 +1,4 @@
-package com.loyofo.core.s6_interface;
+package com.loyofo.core.s6_interface.e0_demo;
 
 /**
  * @author luojbin
