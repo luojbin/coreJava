@@ -147,6 +147,7 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
         // 需要: new Comparator().compare(String s1, String s2)
         // 提供: EmployeeTest.staticCompare(String s1, String s2)
         // staticCompare(s1, s2), 与 Comparator.compare(s1, s2) 一样
+        System.out.println("===========类型::静态方法=========");
         Arrays.sort(arr, EmployeeTest::staticCompare);
         Arrays.sort(arr, new Comparator<String>(){
             @Override
@@ -159,6 +160,7 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
         // 需要: new Comparator().compare(String s1, String s2)
         // 提供: new EmployeeTest().instanceCompare(String o1, String e2)
         // instanceCompare(s1, s2), 与 Comparator.compare(s1, s2) 一样
+        System.out.println("===========对象::实例方法=========");
         Arrays.sort(arr, new EmployeeTest()::instanceCompare);
         Arrays.sort(arr, new Comparator<String>() {
             @Override
@@ -172,6 +174,7 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
         // 提供: s1.compareTo(String, s2)
         // s1.compareTo(s2), 这与 Comparator.compare(s1, s2) 不同, 但也有 s1, s2 两个部分
         // 因此在执行时, 会将 Comparator.compare(s1, s2) 的第一个参数作为这个方法的调用方, 第二个参数作为方法参数
+        System.out.println("===========类型::实例方法=========");
         Arrays.sort(arr, String::compareTo);
         Arrays.sort(arr, new Comparator<String>() {
             @Override
