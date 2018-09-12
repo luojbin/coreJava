@@ -1,7 +1,6 @@
 import com.loyofo.core.s6_interface.e0_demo.Employee;
 import com.loyofo.core.s6_interface.e0_demo.EmpployeeAgeComparator;
 import com.loyofo.core.s6_interface.e0_demo.EmpployeeNameComparator;
-import org.junit.Test;
 
 import java.util.*;
 
@@ -10,14 +9,14 @@ import java.util.*;
  * @version 1.0
  * @create 2018-08-23 11:18
  */
-public class EmployeeTest implements Comparable<EmployeeTest>{
+public class Test implements Comparable<Test>{
 
     private int instanceCompare(String o1, String e2) {
         return o1.length() - e2.length();
     }
 
     @Override
-    public int compareTo(EmployeeTest o1) {
+    public int compareTo(Test o1) {
         return 1;
     }
 
@@ -25,7 +24,7 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
         return o1.length() - e2.length();
     }
 
-    @Test
+    @org.junit.Test
     public void testComparable() {
         Employee tom = new Employee("Tom", 18, "男");
         Employee jerry = new Employee("Jerry", 21, "男");
@@ -86,7 +85,7 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
 
     }
 
-    @Test
+    @org.junit.Test
     public void testMethonReference() {
         String[] arr = new String[]{"apple", "pear", "orange", "peach"};
         List<String> list = Arrays.asList(arr);
@@ -97,17 +96,17 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
         list.forEach(System.out::println);
 
         // 数据准备
-        EmployeeTest et = new EmployeeTest();
+        Test et = new Test();
         Employee e = new Employee("aa", 12, "df");
         Employee f = new Employee("aa", 12, "df");
         Employee g = new Employee("aa", 12, "df");
         Employee[] es = {e,f,g};
 
         //region Description
-        EmployeeTest et1 = new EmployeeTest();
-        EmployeeTest et2 = new EmployeeTest();
-        EmployeeTest et3 = new EmployeeTest();
-        EmployeeTest[] ets ={et1, et2, et3};
+        Test et1 = new Test();
+        Test et2 = new Test();
+        Test et3 = new Test();
+        Test[] ets ={et1, et2, et3};
 
         /*
          * Arrays.sort(array, Comparator)
@@ -143,27 +142,27 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
 
         // 类名::静态方法
         // 需要: new Comparator().compare(String s1, String s2)
-        // 提供: EmployeeTest.staticCompare(String s1, String s2)
+        // 提供: Test.staticCompare(String s1, String s2)
         // staticCompare(s1, s2), 与 Comparator.compare(s1, s2) 一样
         System.out.println("===========类型::静态方法=========");
-        Arrays.sort(arr, EmployeeTest::staticCompare);
+        Arrays.sort(arr, Test::staticCompare);
         Arrays.sort(arr, new Comparator<String>(){
             @Override
             public int compare(String o1, String o2) {
-                return EmployeeTest.staticCompare(o1, o2);
+                return Test.staticCompare(o1, o2);
             }
         });
 
         // 对象::实例方法
         // 需要: new Comparator().compare(String s1, String s2)
-        // 提供: new EmployeeTest().instanceCompare(String o1, String e2)
+        // 提供: new Test().instanceCompare(String o1, String e2)
         // instanceCompare(s1, s2), 与 Comparator.compare(s1, s2) 一样
         System.out.println("===========对象::实例方法=========");
-        Arrays.sort(arr, new EmployeeTest()::instanceCompare);
+        Arrays.sort(arr, new Test()::instanceCompare);
         Arrays.sort(arr, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                return new EmployeeTest().instanceCompare(o1, o2);
+                return new Test().instanceCompare(o1, o2);
             }
         });
 
@@ -196,10 +195,10 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
                 return o1.compareToBYname(o2);
             }
         });
-        Arrays.sort(ets, EmployeeTest::compareTo);
-        Arrays.sort(ets, new Comparator<EmployeeTest>() {
+        Arrays.sort(ets, Test::compareTo);
+        Arrays.sort(ets, new Comparator<Test>() {
             @Override
-            public int compare(EmployeeTest o1, EmployeeTest o2) {
+            public int compare(Test o1, Test o2) {
                 return o1.compareTo(o2);
             }
         });
@@ -219,12 +218,12 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
         Arrays.sort(arr, c);
     }
 
-    @Test
+    @org.junit.Test
     public void teststr() {
         int a = 1;
     }
 
-    @Test
+    @org.junit.Test
     public void testLam() {
 
     }
