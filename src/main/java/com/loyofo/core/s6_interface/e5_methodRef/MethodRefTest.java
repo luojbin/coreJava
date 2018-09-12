@@ -1,3 +1,8 @@
+package com.loyofo.core.s6_interface.e5_methodRef;
+
+import com.loyofo.core.s6_interface.e4_functionInterface.f2_supplier.MySupplier;
+import com.loyofo.core.s6_interface.e4_functionInterface.f4_function.FunctionWith3Args;
+import com.loyofo.core.s6_interface.e4_functionInterface.f4_function.MyFunction;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -11,13 +16,13 @@ import java.util.Comparator;
 public class MethodRefTest {
 
     // 定义一个实例方法, 参数列表和返回值 同抽象方法一致
-    public int compareWithLength(String s1, String s2){
-        return s1.length()-s2.length();
+    public int compareWithLength(String s1, String s2) {
+        return s1.length() - s2.length();
     }
 
     // 定义一个静态方法, 参数列表和返回值, 同抽象方法一致
-    public static int staticCompareWithLength(String s1, String s2){
-        return s1.length()-s2.length();
+    public static int staticCompareWithLength(String s1, String s2) {
+        return s1.length() - s2.length();
     }
 
     @Test
@@ -85,4 +90,25 @@ public class MethodRefTest {
     }
 
 
+
+    @Test
+    public void testNew() {
+        // 无参构造函数   传递给 Supplier<R>
+        MySupplier supplier = new MySupplier();
+        Person person = supplier.getInstance(Person::new);
+        System.out.println(person);
+
+        // 单参构造函数   传递给 Function<T, R>
+        MyFunction function = new MyFunction();
+        Person person1 = function.doWithTFunction("Amy", Person::new);
+        System.out.println(person1);
+
+        // 双参构造函数   传递给 BiFunction<T,U,R>
+        Person person2 = function.getRFromTU("Bennt", "123456", Person::new);
+        System.out.println(person2);
+
+        // 多参构造函数   传递给 自定义函数式接口
+        Person person3 = function.getRFrom3Args("Candy", "654321", "this is my address", Person::new);
+        System.out.println(person3);
+    }
 }

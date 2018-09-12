@@ -25,7 +25,7 @@ public class MySupplier {
         return supplier.getAsBoolean();
     }
 
-    public <T> T getInt(Supplier<T> supplier){
+    public <T> T getInstance(Supplier<T> supplier){
         return supplier.get();
     }
 }

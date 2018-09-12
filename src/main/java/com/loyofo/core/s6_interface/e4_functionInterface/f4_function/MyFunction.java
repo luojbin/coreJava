@@ -63,19 +63,23 @@ public class MyFunction {
         return func.applyAsDouble(t);
     }
 
-    public <T, U, R> R getFromTU(T t, U u, BiFunction<T,U,R> func){
+    public <T, U, R> R getRFromTU(T t, U u, BiFunction<T,U,R> func){
         return func.apply(t, u);
     }
 
-    public <T, U> int getFromTU(T t, U u, ToIntBiFunction<T,U> func){
+    public <T, U> int getIntFromTU(T t, U u, ToIntBiFunction<T,U> func){
         return func.applyAsInt(t, u);
     }
 
-    public <T, U> long getFromTU(T t, U u, ToLongBiFunction<T,U> func){
+    public <T, U> long getLongFromTU(T t, U u, ToLongBiFunction<T,U> func){
         return func.applyAsLong(t, u);
     }
 
-    public <T, U> double getFromTU(T t, U u, ToDoubleBiFunction<T,U> func){
+    public <T, U> double getDoubleFromTU(T t, U u, ToDoubleBiFunction<T,U> func){
         return func.applyAsDouble(t, u);
+    }
+
+    public <A, B, C, R> R getRFrom3Args(A a, B b, C c, FunctionWith3Args<A, B, C, R> func) {
+        return func.apply(a, b, c);
     }
 }
