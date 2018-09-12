@@ -128,7 +128,7 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
          * 此处的 lambda 表达式, 参数列表与 Comparator.compare 方法保持一致, 因为两者是等价的.
          */
         Arrays.sort(arr, (String s1, String s2) -> s1.length() - s2.length());
-        /** 类型明确时, 可以省略参数类型声明 */
+        /* 类型明确时, 可以省略参数类型声明 */
         Arrays.sort(arr, (s1, s2) -> s1.length() - s2.length());
 
 
@@ -222,6 +222,11 @@ public class EmployeeTest implements Comparable<EmployeeTest>{
     @Test
     public void teststr() {
         int a = 1;
+    }
+
+    @Test
+    public void testLam() {
+
     }
 }
 
