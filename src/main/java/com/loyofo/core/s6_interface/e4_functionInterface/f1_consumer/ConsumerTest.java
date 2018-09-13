@@ -11,5 +11,9 @@ public class ConsumerTest {
     @Test
     public void testIntConsumer() {
         MyConsumer consumer = new MyConsumer();
+        // 以 lambda 作为实参传递
+        consumer.doWithObject("hello lambda", s -> System.out.println(s));
+        // 以 方法引用 作为实参传递
+        consumer.doWithObject("hello method ref", System.out::println);
     }
 }
