@@ -1,4 +1,4 @@
-package com.loyofo.core.s6_interface.e6_innerClass.f3_anonymous;
+package com.loyofo.core.s6_interface.e6_innerClass.f4_static;
 
 import org.junit.Test;
 
@@ -6,10 +6,13 @@ public class StaticInner {
     @Test
     public void testStatic() {
         System.out.println(StaticObj.name);
+        StaticObj.name = "修改静态域";
+        System.out.println(StaticObj.name);
         StaticObj.print();
 
         System.out.println(StaticInter.ClassInInterface.name);
         StaticInter.ClassInInterface.printInInterface();
+
     }
 
     static class StaticObj {
