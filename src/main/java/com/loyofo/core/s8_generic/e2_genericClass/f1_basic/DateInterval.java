@@ -15,6 +15,9 @@ public class DateInterval extends Pair<LocalDate> {
 
     @Test
     public void test() {
-
+        DateInterval interval = new DateInterval();
+        Pair<LocalDate> pair = interval;
+        LocalDate date = LocalDate.of(1,1,1);
+        pair.setSecond(date);
     }
 }

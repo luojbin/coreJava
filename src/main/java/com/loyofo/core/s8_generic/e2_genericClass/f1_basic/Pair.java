@@ -1,5 +1,7 @@
 package com.loyofo.core.s8_generic.e2_genericClass.f1_basic;
 
+import java.time.LocalDate;
+
 public class Pair<T> {
     private T first;
     private T second;
