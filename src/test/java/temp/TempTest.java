@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 /**
  * @author luojbin
@@ -126,6 +127,14 @@ public class TempTest {
         System.out.println("abcdefghijklmn");
         System.out.println("ABCDEFGHIJKLMN");
         System.out.println("0123456789");
+    }
+
+    @Test
+    public void testPattern() {
+        String reg = "(1,2,3,4|1)";
+        System.out.println(Pattern.matches(reg, "1,2,3,4"));
+        System.out.println(Pattern.matches(reg, "1"));
+        System.out.println(Pattern.matches(reg, "1,2,3"));
     }
 
 }
