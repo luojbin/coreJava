@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @version 1.0
  * @time 2018-11-23 15:20
  */
-public class l2_TypeCheck {
+public class L2_TypeCheck {
     @Test
     public void testTypeCheck() {
         Object list = getStrList();

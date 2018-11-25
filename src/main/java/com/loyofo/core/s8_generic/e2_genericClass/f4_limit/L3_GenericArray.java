@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @version 1.0
  * @time 2018-11-23 15:25
  */
-public class l3_GenericArray {
+public class L3_GenericArray {
 
     @Test
     public void testInit() {

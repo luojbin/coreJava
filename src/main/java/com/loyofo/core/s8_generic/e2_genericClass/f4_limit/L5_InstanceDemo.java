@@ -2,7 +2,7 @@ package com.loyofo.core.s8_generic.e2_genericClass.f4_limit;
 
 import org.junit.Test;
 
-public class l5_InstanceDemo {
+public class L5_InstanceDemo {
     @Test
     public void test1() {
         Container<Content> c = Container.getInstance(Content::new);

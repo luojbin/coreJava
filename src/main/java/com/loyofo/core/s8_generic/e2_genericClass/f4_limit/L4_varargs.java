@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 
-public class l4_varargs {
+public class L4_varargs {
 
     @SafeVarargs
     public static <T> void addAll(Collection<T> coll, T... ts) {

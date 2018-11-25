@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class l6_TArray {
+public class L6_TArray {
 
     public static <T extends Comparable> T[] minMax(T... a){
         // 不能直接使用 T[] 实例化数组, 因为类型擦除, 永远是原始类型
@@ -20,7 +20,7 @@ public class l6_TArray {
     @Test
     public void test() {
         // 不会有编译错误, 但是运行时异常.
-        Comparable[] mm = l6_TArray.<Integer>minMax(123,456,789);
+        Comparable[] mm = L6_TArray.<Integer>minMax(123,456,789);
     }
 
     @Test
