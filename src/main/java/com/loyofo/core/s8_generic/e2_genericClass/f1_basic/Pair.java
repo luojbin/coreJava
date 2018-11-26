@@ -6,6 +6,7 @@ public class Pair<T> {
     private T first;
     private T second;
 
+
     public T getFirst() {
         return first;
     }
@@ -22,7 +23,7 @@ public class Pair<T> {
         this.second = second;
     }
 
-    public void update () {
-        T t =  getFirst();
+    public void update() {
+        T t = getFirst();
     }
 }
