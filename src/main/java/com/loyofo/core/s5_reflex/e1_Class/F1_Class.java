@@ -15,15 +15,28 @@ import java.util.Arrays;
  */
 public class F1_Class {
     @Test
-    public void test1() {
+    public void testGetClass() {
         String s = "hello reflex";
         // 获取一个 Class 类型的实例
         Class cl = s.getClass();
         System.out.println(cl); // class java.lang.String
+    }
 
-        // 通过类本身来获取 Class 对象
-        Class cl2 = String.class;
-        System.out.println(cl2); // class java.lang.String
+    @Test
+    public void testForName() throws ClassNotFoundException {
+        // 根据类名获取 Class 对象, 需要提供完整类名(含包名)
+        String name = "com.loyofo.core.s6_interface.e0_demo.Manager";
+        System.out.println(Class.forName(name));
+    }
+
+    @Test
+    public void testTClass() {
+        // 基本类型
+        System.out.println(int.class);
+        // 引用类型
+        System.out.println(String.class);
+        // void 关键字
+        System.out.println(void.class);
     }
     @Test
     public void test2() {
@@ -41,12 +54,6 @@ public class F1_Class {
         }
     }
 
-    @Test
-    public void test3() throws ClassNotFoundException {
-        // 根据类名获取 Class 对象, 需要提供完整类名(含包名)
-        String name = "com.loyofo.core.s6_interface.e0_demo.Manager";
-        Class cl = Class.forName(name);
-    }
 
     @Test
     public void test4() {
@@ -59,22 +66,22 @@ public class F1_Class {
 
     @Test
     public void test5() {
-        int[] ints = new int[]{};
+        int[] ints = new int[3];
         System.out.println(ints.getClass());    // class [I
 
-        byte[] bys = new byte[]{};
+        byte[] bys = new byte[3];
         System.out.println(bys.getClass());     // class [B
 
-        boolean[] bls = new boolean[]{};
+        boolean[] bls = new boolean[3];
         System.out.println(bls.getClass());     // class [Z
 
-        Integer[] integers = new Integer[]{};
+        Integer[] integers = new Integer[3];
         System.out.println(integers.getClass());    // class [Ljava.lang.Integer;
 
-        int[][] ij = new int[][]{ {}, {}, {} };
+        int[][] ij = new int[3][3];
         System.out.println(ij.getClass());  // class [[I
 
-        int[][][] ijk = new int[][][]{ {{}, {}, {}}, {{}, {}, {}}, {{}, {}, {}} };
+        int[][][] ijk = new int[3][3][3];
         System.out.println(ijk.getClass());  // class [[I
     }
 
