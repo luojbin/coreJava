@@ -1,12 +1,6 @@
 package com.loyofo.core.s5_reflex.e1_Class;
 
-import com.loyofo.core.s6_interface.e0_demo.Employee;
-import com.loyofo.core.s6_interface.e0_demo.Manager;
 import org.junit.Test;
-
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.util.Arrays;
 
 /**
  * @author luojbin
@@ -26,94 +20,37 @@ public class F1_Class {
     public void testForName() throws ClassNotFoundException {
         // 根据类名获取 Class 对象, 需要提供完整类名(含包名)
         String name = "com.loyofo.core.s6_interface.e0_demo.Manager";
-        System.out.println(Class.forName(name));
+        Class cl = Class.forName(name);
+        System.out.println(cl);// class com.loyofo.core.s6_interface.e0_demo.Manager
     }
 
     @Test
     public void testTClass() {
         // 基本类型
-        System.out.println(int.class);
-        // 引用类型
-        System.out.println(String.class);
-        // void 关键字
-        System.out.println(void.class);
-    }
-    @Test
-    public void test2() {
-        Manager manager = new Manager();
-        // 获取一个 Class 类型的实例
-        Class cl = manager.getClass();
-        // 获取完整类名(含包名)
-        System.out.println(cl.getName());           // com.loyofo.core.s6_interface.e0_demo.Manager
-        // 获取简单类名(不含包名)
-        System.out.println(cl.getSimpleName());     // Manager
-        // 获取方法列表
-        Method[] methods = cl.getMethods();
-        for (Method m : methods) {
-            System.out.println(m);
-        }
-    }
-
-
-    @Test
-    public void test4() {
         Class intCl = int.class;
-        System.out.println(intCl);  // int
-
-        Class doubleCl = double.class;
-        System.out.println(doubleCl);   // double
+        System.out.println(intCl);// int
+        // 引用类型
+        Class strCl = String.class;
+        System.out.println(strCl);// class java.lang.String
+        // void 关键字
+        Class voidCl = void.class;
+        System.out.println(voidCl);// void
     }
 
     @Test
-    public void test5() {
-        int[] ints = new int[3];
-        System.out.println(ints.getClass());    // class [I
-
-        byte[] bys = new byte[3];
-        System.out.println(bys.getClass());     // class [B
-
-        boolean[] bls = new boolean[3];
-        System.out.println(bls.getClass());     // class [Z
-
-        Integer[] integers = new Integer[3];
-        System.out.println(integers.getClass());    // class [Ljava.lang.Integer;
-
-        int[][] ij = new int[3][3];
-        System.out.println(ij.getClass());  // class [[I
-
-        int[][][] ijk = new int[3][3][3];
-        System.out.println(ijk.getClass());  // class [[I
+    public void testArrayClass() {
+        System.out.println(byte[].class); // class [B
+        System.out.println(boolean[].class); // class [Z
+        System.out.println(int[].class); // class [I
+        System.out.println(int[][].class); // class [[I
+        System.out.println(Integer[].class);    // class [Ljava.lang.Integer;
+        System.out.println(Integer[][][].class);  // class [[[Ljava.lang.Integer;
     }
 
     @Test
-    public void test6() {
+    public void testEquals() throws Exception{
         System.out.println("str".getClass() == String.class);  // true
-    }
-
-    @Test
-    public void test7() {
-        try {
-            Manager manager1 = new Manager("张三", 20, "男");
-            Manager manager2 = manager1.getClass().newInstance();
-            System.out.println("创建 Manager ok");
-
-            String empName = "com.loyofo.core.s6_interface.e0_demo.Employee";
-            Employee employee = (Employee) Class.forName(empName).newInstance();
-            System.out.println("创建 Employee ok");
-        } catch (Exception e) {
-            System.out.println("newInstance 异常:" + e.getCause());
-        }
-    }
-    @Test
-    public void test8() {
-        try {
-            String empName = "com.loyofo.core.s6_interface.e0_demo.Employee";
-            Constructor[] cs = Class.forName(empName).getConstructors();
-            Constructor c = cs[0];
-            Object obj = c.newInstance("反射创建员工", 22, "男");
-            System.out.println(obj);    // Employee{name='反射创建员工', age=22, sex='男'}
-        } catch (Exception e) {
-            System.out.println("newInstance 异常:" + e.getCause());
-        }
+        System.out.println(Class.forName("java.lang.String") == String.class);  // true
+        System.out.println(Class.forName("java.lang.String") == "str".getClass());  // true
     }
 }
