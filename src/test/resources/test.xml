@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transaction>
+    <header>
+        <msg>
+            <RET>
+                <RET_MSG>Success</RET_MSG>
+                <RET_CODE>000000</RET_CODE>
+            </RET>
+            <TRAN_TIMESTAMP>100606242</TRAN_TIMESTAMP>
+            <MESSAGE_TYPE>1230</MESSAGE_TYPE>
+            <SOURCE_BRANCH_NO>0001</SOURCE_BRANCH_NO>
+            <BRANCH_ID>91500105MA5UTLM5XA</BRANCH_ID>
+            <MESSAGE_CODE>0199</MESSAGE_CODE>
+            <RET_STATUS>S</RET_STATUS>
+            <SERVICE_CODE>SVR_PTLN</SERVICE_CODE>
+            <DEST_BRANCH_NO>0001</DEST_BRANCH_NO>
+            <TRAN_DATE>20181128</TRAN_DATE>
+            <SEQ_NO>1543370766242</SEQ_NO>
+        </msg>
+    </header>
+    <body>
+        <RtrTx>
+            <MSG_CODE>000000</MSG_CODE>
+            <MSG_INFO>success</MSG_INFO>
+        </RtrTx>
+    </body>
+</transaction>
