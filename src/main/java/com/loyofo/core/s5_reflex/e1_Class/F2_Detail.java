@@ -97,6 +97,7 @@ public class F2_Detail {
     }
     public void printMethods(Class cl) {
         Method[] ms = cl.getDeclaredMethods();
+        Manager mm = new Manager("",11,"");
         for (Method m : ms) {
             String name = m.getName();
             System.out.print("\t");

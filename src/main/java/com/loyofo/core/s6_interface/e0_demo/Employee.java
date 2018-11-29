@@ -10,6 +10,10 @@ public class Employee implements Comparable<Employee> {
     private int age;
     private String sex;
 
+    public String pbname;
+    public int pbage;
+    public String pbsex;
+
     public static void ok(){
         System.out.println("ok");
     }
@@ -17,6 +21,9 @@ public class Employee implements Comparable<Employee> {
         this.name = name;
         this.age = age;
         this.sex = sex;
+        this.pbname = name;
+        this.pbage = age;
+        this.pbsex = sex;
     }
 
     @Override
