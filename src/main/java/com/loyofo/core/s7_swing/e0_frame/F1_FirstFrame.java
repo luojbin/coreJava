@@ -66,6 +66,9 @@ class FirstFrame extends JFrame {
         // 获取多显示器, 不知道怎么用
         // GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
         // GraphicsDevice[] screens = graphicsEnvironment.getScreenDevices();
+
+        // 尺寸是否可变
+        setResizable(false);
     }
 
 }
