@@ -2,10 +2,12 @@ package temp;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.regex.Pattern;
 
 /**
@@ -136,5 +138,109 @@ public class TempTest {
         System.out.println(Pattern.matches(reg, "1"));
         System.out.println(Pattern.matches(reg, "1,2,3"));
     }
+
+    @Test
+    public void testFloat() {
+
+        float a1 = 123456.1234567f;
+        float a2 = 12345.61234567f;
+        float a3 = 1234.561234567f;
+        float a4 = 123.4561234567f;
+        float a5 = 12.34561234567f;
+        float a6 = 1.234561234567f;
+        float a7 = 0.1234561234567f;
+
+        System.out.println(a1);
+        System.out.println(a2);
+        System.out.println(a3);
+        System.out.println(a4);
+        System.out.println(a5);
+        System.out.println(a6);
+        System.out.println(a7);
+
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(a1)));
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(a2)));
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(a3)));
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(a4)));
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(a5)));
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(a6)));
+        System.out.println(Integer.toBinaryString(Float.floatToIntBits(a7)));
+
+
+        System.out.println(String.format("%05d",1));
+        // System.out.println(String.format("%032s",Integer.toBinaryString(Float.floatToIntBits(0.5f))));
+        // System.out.println(String.format("%032s",Integer.toBinaryString(Float.floatToIntBits(-0.5f))));
+    }
+
+    @Test
+    public void testFloat2() {
+        float a = 0.1F;
+        float b = 0.2F;
+        float c = 0.3F;
+        float d = 0.9F;
+        System.out.println(a+b == c);
+        System.out.println(1-c);
+        System.out.println(c+c+c);
+        System.out.println(c+c);
+        System.out.println(0.6F+c);
+        System.out.println(0.9 == d);
+    }
+
+
+
+    @Test
+    public void testdeciToLong() {
+        BigDecimal b = new BigDecimal("12.2");
+        long l = b.setScale(0, RoundingMode.HALF_UP).longValue();
+        System.out.println(l);
+    }
+
+
+    @Test
+    public void testC() {
+        String[] array = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",};
+        try {
+            Arrays.asList(array).stream().forEach(s -> {
+                if (Math.random() * 10 > 8) {
+                    throw new RuntimeException(s);
+                } else {
+                    System.out.println(s);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testC2() {
+        String[] array = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",};
+
+        Arrays.asList(array).stream().forEach(s -> {
+            try {
+                if (Math.random() * 10 > 8) {
+                    throw new RuntimeException(s);
+                } else {
+                    System.out.println(s);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
