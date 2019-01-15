@@ -2,9 +2,14 @@ package temp;
 
 import org.junit.Test;
 
+import javax.swing.text.DateFormatter;
+import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -230,8 +235,31 @@ public class TempTest {
 
     }
 
+    @Test
+    public void testLocalTime() {
+        String dateStr = "2018-11-22";
+        String dateTimeStr = "2018-11-11 01:02:03";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr, dateTimeFormatter);
+        System.out.println("datetime ok: " + dateTime);
+
+        LocalDate date = LocalDate.parse(dateStr, dateFormatter);
+        System.out.println("date ok: " + date);
+
+        LocalDateTime date2DateTime = date.atStartOfDay();
+        System.out.println("date2DateTime ok: " + date2DateTime);
+
+    }
 
 
+    @Test
+    public void testGetFont() {
+        String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+        for (String font : fonts ) {
+            System.out.println(font);
+        }
+    }
 
 
 
