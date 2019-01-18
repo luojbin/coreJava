@@ -21,6 +21,8 @@ public class BtnPanel extends JPanel {
 
         startBtn.addActionListener(panel.new StartActListener());
         stopBtn.addActionListener(panel.new StopActionListener());
+        resetBtn.addActionListener(panel.new ResetActionListener());
+
         // 添加按钮到面板上
         add(startBtn);
         add(stopBtn);

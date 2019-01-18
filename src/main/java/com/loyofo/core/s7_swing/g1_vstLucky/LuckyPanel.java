@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author luojbin
@@ -27,6 +29,8 @@ public class LuckyPanel extends JPanel {
     public int status = Constant.STATUS_START;
     // imgList
     public static File[] imgList;
+    // 中奖者
+    public List<BufferedImage> pickedList;
 
     @Override
     public Dimension getPreferredSize() {
@@ -36,8 +40,9 @@ public class LuckyPanel extends JPanel {
     public LuckyPanel() {
         // 背景
         try {
+            pickedList = new ArrayList<>();
             background = ImageIO.read(LuckyPanel.class.getResource("/image/background.jpg"));
-            candidate = ImageIO.read(LuckyPanel.class.getResource("/image/background.jpg"));
+            candidate = null;
             imgList = getAllFile("/candidate/male");
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,16 +53,12 @@ public class LuckyPanel extends JPanel {
     public void paint(Graphics g) {
         g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
         g.drawImage(candidate, 560, 200, 800, 600, null);
-    }
-
-    public void reloadImgList(){
-        try {
-            imgList = getAllFile("/candidate/male");
-            candidate = ImageIO.read(imgList[0]);
-        } catch (IOException e) {
-            e.printStackTrace();
+        int count = pickedList.size();
+        for (int i = 0; i< count ; i++) {
+            g.drawImage(pickedList.get(i), 10, 130*i + 10, 160, 120, null);
         }
     }
+
 
     public static File[] getAllFile(String path) {
         String rootPath = LuckyPanel.class.getResource("/").getPath();
@@ -68,9 +69,11 @@ public class LuckyPanel extends JPanel {
     private void changeImg() {
         try {
             int index = (int) (Math.random() * imgList.length);
+            System.out.println(index);
             candidate = ImageIO.read(imgList[index]);
             repaint();
         } catch (Exception e) {
+            e.printStackTrace();
             changeImg();
         }
     }
@@ -84,11 +87,13 @@ public class LuckyPanel extends JPanel {
                     changeImg();
                     // 如果要求停止,
                     if (LuckyPanel.this.status != Constant.STATUS_RUNNING) {
+                        pickedList.add(candidate);
                         break;
                     }
                     try {
                         Thread.sleep(50);
-                    } catch (InterruptedException e1) {
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
                     }
                 }
             };
@@ -102,6 +107,21 @@ public class LuckyPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             status = Constant.STATUS_PAUSE;
             System.out.println("结束");
+        }
+    }
+
+    class ResetActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                pickedList = new ArrayList<>();
+                background = ImageIO.read(LuckyPanel.class.getResource("/image/background.jpg"));
+                candidate = null;
+                imgList = getAllFile("/candidate/male");
+                repaint();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 

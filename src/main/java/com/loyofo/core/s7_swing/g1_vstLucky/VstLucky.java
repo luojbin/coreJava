@@ -1,7 +1,9 @@
 package com.loyofo.core.s7_swing.g1_vstLucky;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * @author luojbin
@@ -14,14 +16,19 @@ public class VstLucky {
             @Override
             public void run() {
                 // 创建图形框架
-                JFrame frame = new JFrame();
+                JFrame frame = new JFrame("谁是幸运儿");
+                Image icon = null;
+                try {
+                    icon = ImageIO.read(VstLucky.class.getResource("/image/icon.png"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                frame.setIconImage(icon);
                 // 创建主面板
                 LuckyPanel mainPanel = new LuckyPanel();
                 // 添加候选人框
-
                 // 添加按钮面板到主面板
                 frame.add(new BtnPanel(mainPanel));
-
                 frame.add(mainPanel);
                 frame.pack();
                 // 设置关闭程序的时机

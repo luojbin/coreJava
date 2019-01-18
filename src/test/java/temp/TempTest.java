@@ -261,6 +261,15 @@ public class TempTest {
         }
     }
 
+    @Test
+    public void testRando() {
+        for (;;){
+            int index = (int) (Math.random() * 24);
+            if (index >= 20){
+                System.out.println(index);
+            }
+        }
+    }
 
 
 
