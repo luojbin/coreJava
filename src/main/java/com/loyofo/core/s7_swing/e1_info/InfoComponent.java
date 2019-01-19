@@ -20,8 +20,7 @@ class InfoComponent extends JComponent {
     }
 
     @Override
-    public void paint(Graphics g) {
-        // super.paint(g);
+    public void paintComponent(Graphics g) {
         g.drawString(text, 50, 50);
     }
 

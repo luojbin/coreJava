@@ -16,7 +16,7 @@ public class ColorPanel extends JPanel {
     private static final int WIDTH = 400;
 
     @Override
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
         // 通过 setColor/setColor 指定后续绘图需要的颜色, 需要需要使用多种颜色, 就重复 颜色-绘制-颜色-绘制

@@ -20,8 +20,7 @@ class InfoPanel2 extends JPanel {
     }
 
     @Override
-    public void paintComponents(Graphics g) {
-        // super.paintComponents(g);
+    public void paintComponent(Graphics g) {
         g.drawString(text, 50, 50);
     }
 
