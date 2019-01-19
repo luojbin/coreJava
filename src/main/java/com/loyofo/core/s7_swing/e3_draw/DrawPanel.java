@@ -26,6 +26,17 @@ public class DrawPanel extends JPanel {
         Rectangle2D rect = new Rectangle2D.Double(x1, y1, width, height);
         g2.draw(rect);
 
+
+        double px=100, py=100, qx=10, qy=10;
+        // 这种方式创建, 若 p 不是左上角顶点, 则矩形不存在
+        Rectangle2D rect2 = new Rectangle2D.Double(px,py, qx-px, qy-py);
+        g2.draw(rect2);
+
+        // 在不确定是否左上角时, 可以根据两对角点构造对象
+        Rectangle2D rect3 = new Rectangle2D.Double();
+        rect3.setFrameFromDiagonal(px, py, qx, qy);
+        g2.draw(rect3);
+
         // 线段
         g2.draw(new Line2D.Double(x1,y1, x1+width, y1+height));
         g2.draw(new Line2D.Double(x1, y1+height, x1+width, y1));

@@ -10,10 +10,10 @@ class FontFrame extends JFrame {
 
     public FontFrame() {
         // 设置窗口标题
-        setTitle("添加组件");
+        setTitle("字体测试");
 
         // 添加框架内的组件
-        JComponent c1 = new FontComponent("class FontFrame extends JFrame");
+        JComponent c1 = new FontComponent("class");
         add(c1);
 
 

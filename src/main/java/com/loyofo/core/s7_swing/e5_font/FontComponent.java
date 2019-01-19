@@ -2,6 +2,8 @@ package com.loyofo.core.s7_swing.e5_font;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.Rectangle2D;
 
 /**
  * JFrame 是图形程序的主框架, 即图形窗口
@@ -21,8 +23,22 @@ class FontComponent extends JComponent {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.setFont(new Font("YaHei Monaco Hybird", Font.PLAIN,20));
-        g.drawString(text, 50, 50);
+        Font font = new Font("YaHei Monaco Hybird", Font.PLAIN, 20);
+        g.setFont(font);
+
+        // 获取字符串大小
+        Graphics2D g2 = (Graphics2D) g;
+        FontRenderContext context = g2.getFontRenderContext();
+        Rectangle2D bounds = font.getStringBounds(text, context);
+        double strWidth = bounds.getWidth();
+        double setHeight = bounds.getHeight();
+        double ascent = -bounds.getY();
+        System.out.println(ascent);
+
+        int strX = (int) ((WIDTH - strWidth) / 2);
+        int strY = (int) ((HEIGHT - setHeight) / 2 + ascent);
+        // 这里的Y是基线的位置, 不是字符所在矩形的上边框
+        g.drawString(text, strX, strY);
     }
 
     @Override
