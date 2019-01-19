@@ -11,6 +11,11 @@ import java.io.IOException;
  * @time 2019-01-18 14:01
  */
 public class VstLucky {
+
+    public static final int STATUS_START = 0;
+    public static final int STATUS_RUNNING = 1;
+    public static final int STATUS_PAUSE = 2;
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             @Override

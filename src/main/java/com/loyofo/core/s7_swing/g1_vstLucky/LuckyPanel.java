@@ -26,7 +26,7 @@ public class LuckyPanel extends JPanel {
     // 候选人
     public static BufferedImage candidate;
     // 状态
-    public int status = Constant.STATUS_START;
+    public int status = VstLucky.STATUS_START;
     // imgList
     public static File[] imgList;
     // 中奖者
@@ -38,15 +38,7 @@ public class LuckyPanel extends JPanel {
     }
 
     public LuckyPanel() {
-        // 背景
-        try {
-            pickedList = new ArrayList<>();
-            background = ImageIO.read(LuckyPanel.class.getResource("/image/background.jpg"));
-            candidate = null;
-            imgList = getAllFile("/candidate/male");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        reset();
     }
 
     @Override
@@ -59,11 +51,22 @@ public class LuckyPanel extends JPanel {
         }
     }
 
-
-    public static File[] getAllFile(String path) {
+    public File[] getAllFile(String path) {
         String rootPath = LuckyPanel.class.getResource("/").getPath();
         File dir = new File(rootPath + path);
         return dir.listFiles();
+    }
+
+    private void reset() {
+        try {
+            pickedList = new ArrayList<>();
+            background = ImageIO.read(LuckyPanel.class.getResource("/image/background.jpg"));
+            candidate = null;
+            imgList = getAllFile("/candidate/male");
+            repaint();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void changeImg() {
@@ -82,11 +85,11 @@ public class LuckyPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             Runnable t = () -> {
-                status = Constant.STATUS_RUNNING;
+                status = VstLucky.STATUS_RUNNING;
                 while (true) {
                     changeImg();
                     // 如果要求停止,
-                    if (LuckyPanel.this.status != Constant.STATUS_RUNNING) {
+                    if (LuckyPanel.this.status != VstLucky.STATUS_RUNNING) {
                         pickedList.add(candidate);
                         break;
                     }
@@ -105,7 +108,7 @@ public class LuckyPanel extends JPanel {
     class StopActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            status = Constant.STATUS_PAUSE;
+            status = VstLucky.STATUS_PAUSE;
             System.out.println("结束");
         }
     }
@@ -113,15 +116,7 @@ public class LuckyPanel extends JPanel {
     class ResetActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
-                pickedList = new ArrayList<>();
-                background = ImageIO.read(LuckyPanel.class.getResource("/image/background.jpg"));
-                candidate = null;
-                imgList = getAllFile("/candidate/male");
-                repaint();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
+            reset();
         }
     }
 
