@@ -33,7 +33,7 @@ public class VstLucky {
                 LuckyPanel mainPanel = new LuckyPanel();
                 // 添加候选人框
                 // 添加按钮面板到主面板
-                frame.add(new BtnPanel(mainPanel));
+                mainPanel.add(new BtnPanel(mainPanel));
                 frame.add(mainPanel);
                 frame.pack();
                 // 设置关闭程序的时机

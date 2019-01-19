@@ -42,7 +42,8 @@ public class LuckyPanel extends JPanel {
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
+        // super.paintComponent(g);
         g.drawImage(background, 0, 0, WIDTH, HEIGHT, null);
         g.drawImage(candidate, 560, 200, 800, 600, null);
         int count = pickedList.size();

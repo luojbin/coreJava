@@ -1,6 +1,7 @@
 package com.loyofo.core.s7_swing.g1_vstLucky;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * @author luojbin
@@ -27,5 +28,10 @@ public class BtnPanel extends JPanel {
         add(startBtn);
         add(stopBtn);
         add(resetBtn);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
     }
 }
