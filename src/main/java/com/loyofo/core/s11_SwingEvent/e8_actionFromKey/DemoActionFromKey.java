@@ -1,4 +1,4 @@
-package com.loyofo.core.s11_SwingEvent.e8_action;
+package com.loyofo.core.s11_SwingEvent.e8_actionFromKey;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.*;
  * @version 1.0
  * @time 2019-01-12 10:04
  */
-public class DemoAction {
+public class DemoActionFromKey {
 
     public static void main(String[] args) {
         // 建议将图形程序放在 EveneQueue 中, 这样可以在完成一系列的初始化工作之后再显示图形窗口
@@ -16,7 +16,7 @@ public class DemoAction {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new ActionFrame(); // 创建窗口对象
+                JFrame frame = new ActionFromKeyFrame(); // 创建窗口对象
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setVisible(true); // 是否可见
             }
