@@ -18,6 +18,7 @@ public class DemoActionSearchOrder {
             public void run() {
                 JFrame frame = new ActionSearchOrderFrame(); // 创建窗口对象
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.pack();
                 frame.setVisible(true); // 是否可见
             }
         });
