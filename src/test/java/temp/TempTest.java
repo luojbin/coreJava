@@ -2,7 +2,6 @@ package temp;
 
 import org.junit.Test;
 
-import javax.swing.text.DateFormatter;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -13,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -113,6 +113,9 @@ public class TempTest {
         System.out.println(nextMonth);
 
 
+        calendar.set(2000, Calendar.FEBRUARY, 5);
+        System.out.println(calendar.get(Calendar.DATE));
+        System.out.println(calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
     }
 
     @Test
@@ -271,13 +274,73 @@ public class TempTest {
         }
     }
 
+    @Test
+    public void testBigDecimal() {
+        Object s = null;
+        String s1 = (String)s;
+        System.out.println(s1);
+        System.out.println(s1);
+
+    }
+
+    @Test
+    public void testRegf() {
+        String str = "111,222,333";
+        String str2 = "111,,222,333,,,,,";
+
+        int n1 = str.split(",").length;
+        int n2 = str2.split(",").length;
+
+        System.out.println(n1);
+        System.out.println(n2);
+    }
+
+    @Test
+    public void testStringBuilder() {
+        String a = "123";
+        String b = "123";
+        String c = new String("123");
+        String d = new String("123");
+        System.out.println(a == b);
+        System.out.println(a.hashCode() + ", " + b.hashCode());
+
+        System.out.println(c == b);
+        System.out.println(c.hashCode() + ", " + b.hashCode());
+
+        System.out.println(d == b);
+        System.out.println(d.hashCode() + ", " + b.hashCode());
+
+        List l1 = new ArrayList();
+        List l2 = new ArrayList();
+        List l3 = new ArrayList();
+        System.out.println(l1.hashCode());
+        System.out.println(l2.hashCode());
+        System.out.println(l3.hashCode());
+    }
+
+    @Test
+    public void testSbbb() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("123456789,");
+        System.out.println(sb.substring(0, sb.length()-1));
+    }
+
+    @Test
+    public void testContain() {
+        String s = "1,2,4,6,8";
+        System.out.println(s.contains("1"));
+    }
+
+    @Test
+    public void testCalendar2() {
+
+    }
 
 
-
-
-
-
-
-
+    @Test
+    public void testNullDecimal() {
+        BigDecimal nullbd = new BigDecimal("null");
+        System.out.println(nullbd);
+    }
 
 }
