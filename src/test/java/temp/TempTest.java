@@ -1,10 +1,31 @@
 package temp;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtils;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.*;
+import org.jfree.chart.labels.ItemLabelAnchor;
+import org.jfree.chart.labels.ItemLabelPosition;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.category.StandardBarPainter;
+import org.jfree.chart.title.LegendTitle;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.chart.ui.HorizontalAlignment;
+import org.jfree.chart.ui.RectangleAnchor;
+import org.jfree.chart.ui.RectangleEdge;
+import org.jfree.chart.ui.TextAnchor;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.junit.Test;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -343,4 +364,103 @@ public class TempTest {
         System.out.println(nullbd);
     }
 
+    @Test
+    public void testJFreeChart() throws IOException {
+        String title = "";
+        String keyLabel = "";
+        String valueLabel = "金额";
+        // 数据集
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        String priAmt = "应回本金";
+        String intAmt = "应回利息";
+
+        String total = "总应回款";
+        String halfYear = "未来半年";
+        String twoMonth = "未来2个月";
+        String oneMonth = "未来一个月";
+        String twoWeek = "未来两周";
+        String oneWeek = "未来一周";
+        dataset.addValue(90000, priAmt, halfYear);
+        dataset.addValue(100, priAmt, total);
+        dataset.addValue(80000, intAmt, halfYear);
+        dataset.addValue(8000, intAmt, total);
+        dataset.addValue(80000, priAmt, twoMonth);
+        dataset.addValue(80000, intAmt, twoMonth);
+        dataset.addValue(8000, priAmt, oneMonth);
+        dataset.addValue(7000, intAmt, oneMonth);
+        dataset.addValue(8500, priAmt, twoWeek);
+        dataset.addValue(7600, intAmt, twoWeek);
+        dataset.addValue(8400, priAmt, oneWeek);
+        dataset.addValue(8600, intAmt, oneWeek);
+
+        // 生成柱状图
+        JFreeChart barChart = ChartFactory.createBarChart(title, keyLabel, valueLabel, dataset,
+                PlotOrientation.HORIZONTAL, true, true, false );
+
+        // 格式化图表
+        setBarChartStyle(barChart);
+
+        File file = new File("demoChart.jpg");
+        ChartUtils.saveChartAsJPEG(file, barChart, 800, 500);
+    }
+
+    public static void setBarChartStyle(JFreeChart chart) {
+        CategoryPlot categoryplot = chart.getCategoryPlot();// 图本身
+        // 设置图的背景为白色
+        categoryplot.setBackgroundPaint(new Color(245, 247, 249));
+        // 设置边框颜色
+        categoryplot.setOutlinePaint(new Color(221, 221, 221));
+        // 设置值坐标轴在底部
+        categoryplot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_LEFT);
+        // 设置背景虚线的颜色
+        categoryplot.setRangeGridlinePaint(new Color(0xB6A2DE));
+
+        // 设置标题样式
+        TextTitle titleStyle = chart.getTitle();
+        titleStyle.setFont(new Font("微软雅黑", Font.PLAIN, 24));
+        // 设置图例样式
+        LegendTitle legendStyle = chart.getLegend();
+        legendStyle.setItemFont(new Font("微软雅黑", Font.PLAIN, 12));
+        legendStyle.setPosition(RectangleEdge.TOP);
+        legendStyle.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+
+        // 设置值坐标轴样式
+        ValueAxis rangeAxis = categoryplot.getRangeAxis();
+        // 设置Y轴的提示文字样式
+        rangeAxis.setLabelFont(new Font("微软雅黑", Font.PLAIN, 12));
+        // 设置Y轴刻度线的长度
+        rangeAxis.setTickMarkInsideLength(0);
+        // 设置Y轴刻度上余量比例
+        rangeAxis.setUpperMargin(0.2);
+
+        // 设置类别坐标轴样式
+        CategoryAxis domainAxis = categoryplot.getDomainAxis();
+        // 设置X轴下的标签文字
+        domainAxis.setLabelFont(new Font("微软雅黑", Font.PLAIN, 12));
+        // 设置X轴上提示文字样式
+        domainAxis.setTickLabelFont(new Font("微软雅黑", Font.PLAIN, 12));
+
+        // 自定义柱状图中柱子的样式
+        BarRenderer brender = new BarRenderer();
+        // 设置颜色
+        brender.setSeriesPaint(0, new Color(159, 195, 239)); // 给series2 Bar
+        brender.setSeriesPaint(1, new Color(70, 120, 185)); // 给series1 Bar
+        // 设置柱状图的顶端显示数字
+        brender.setIncludeBaseInRange(true);
+        brender.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+        brender.setDefaultItemLabelsVisible(true);
+        brender.setDefaultItemLabelPaint(Color.GRAY);
+        brender.setDefaultItemLabelFont(new Font("微软雅黑", Font.PLAIN, 12));
+        brender.setDefaultPositiveItemLabelPosition(new ItemLabelPosition(ItemLabelAnchor.OUTSIDE3, TextAnchor.CENTER_LEFT));
+        // 设置柱子为平面图不是立体的
+        brender.setBarPainter(new StandardBarPainter());
+        // 设置柱状图之间的距离0.1代表10%；
+        brender.setItemMargin(0.1);
+
+        // 设置柱子边框
+        brender.setDrawBarOutline(false);
+        // 设置柱子的阴影，false代表没有阴影
+        brender.setShadowVisible(false);
+        categoryplot.setRenderer(brender);
+    }
 }
