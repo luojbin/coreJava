@@ -13,10 +13,9 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.chart.title.LegendTitle;
 import org.jfree.chart.title.TextTitle;
-import org.jfree.chart.ui.HorizontalAlignment;
-import org.jfree.chart.ui.RectangleAnchor;
-import org.jfree.chart.ui.RectangleEdge;
-import org.jfree.chart.ui.TextAnchor;
+import org.jfree.chart.ui.*;
+import org.jfree.chart.util.UnitType;
+import org.jfree.data.Range;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.junit.Test;
 
@@ -26,13 +25,12 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
+import java.util.*;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -380,18 +378,18 @@ public class TempTest {
         String oneMonth = "未来一个月";
         String twoWeek = "未来两周";
         String oneWeek = "未来一周";
-        dataset.addValue(90000, priAmt, halfYear);
-        dataset.addValue(100, priAmt, total);
-        dataset.addValue(80000, intAmt, halfYear);
-        dataset.addValue(8000, intAmt, total);
-        dataset.addValue(80000, priAmt, twoMonth);
-        dataset.addValue(80000, intAmt, twoMonth);
-        dataset.addValue(8000, priAmt, oneMonth);
-        dataset.addValue(7000, intAmt, oneMonth);
-        dataset.addValue(8500, priAmt, twoWeek);
-        dataset.addValue(7600, intAmt, twoWeek);
-        dataset.addValue(8400, priAmt, oneWeek);
-        dataset.addValue(8600, intAmt, oneWeek);
+        dataset.addValue(100000000, priAmt, halfYear);
+        dataset.addValue(100200000, priAmt, total);
+        dataset.addValue(80000000, intAmt, halfYear);
+        dataset.addValue(105000000, intAmt, total);
+        dataset.addValue(78000000, priAmt, twoMonth);
+        dataset.addValue(80000000, intAmt, twoMonth);
+        dataset.addValue(80000000, priAmt, oneMonth);
+        dataset.addValue(70000000, intAmt, oneMonth);
+        dataset.addValue(85000000, priAmt, twoWeek);
+        dataset.addValue(76000000, intAmt, twoWeek);
+        dataset.addValue(84000000, priAmt, oneWeek);
+        dataset.addValue(80000000, intAmt, oneWeek);
 
         // 生成柱状图
         JFreeChart barChart = ChartFactory.createBarChart(title, keyLabel, valueLabel, dataset,
@@ -404,6 +402,57 @@ public class TempTest {
         ChartUtils.saveChartAsJPEG(file, barChart, 800, 500);
     }
 
+    public static void setValueAxisStyle(ValueAxis axis) {
+        if (axis instanceof NumberAxis) {
+            NumberAxis numberAxis = (NumberAxis) axis;
+            numberAxis.setNumberFormatOverride(NumberFormat.getInstance());
+        }
+
+        // 设置Y轴的提示文字样式
+        axis.setLabelFont(new Font("微软雅黑", Font.PLAIN, 12));
+        // 设置Y轴刻度线的长度
+        axis.setTickMarkInsideLength(0);
+        // 设置Y轴刻度上余量比例(针对正值), 若手动设置了坐标轴范围, 则忽略
+        axis.setUpperMargin(0.2);
+        // 设置Y轴刻度上余量比例(针对负值), 若手动设置了坐标轴范围, 则忽略
+        axis.setLowerMargin(0.2);
+        // 设置坐标轴反向
+        // axis.setInverted(true);
+        // 设置刻度值垂直显示
+        // axis.setVerticalTickLabels(true);
+
+        // 设置坐标轴标签文字
+        // axis.setLabel("setlabel");
+        // 设置坐标轴标签文字角度
+        // axis.setLabelAngle(45);
+        // 设置坐标轴标签颜色
+        // axis.setLabelPaint(Color.RED);
+        axis.setLabelInsets(new RectangleInsets(UnitType.ABSOLUTE, 10,10,10,10));
+
+        // 设置坐标轴标签位置
+        axis.setLabelLocation(AxisLabelLocation.HIGH_END);
+
+
+        axis.setAutoTickUnitSelection(true, true);
+        axis.setAutoTickUnitSelection(true);
+
+        axis.setMinorTickCount(100);
+        // 设置坐标轴下边距或左边距
+        // axis.setFixedDimension(100);
+        // axis.setInverted(true);
+        // axis.setAutoRange(true);
+        // axis.setAutoRangeMinimumSize(5);
+        // axis.setDefaultAutoRange(new Range(1,100));
+        // // axis.setDownArrow(Shape);
+        // axis.setFixedAutoRange(1000);
+        // axis.setLowerBound(11);
+        // axis.setNegativeArrowVisible(true);
+        // axis.setPositiveArrowVisible(true);
+        // axis.setRangeAboutValue(100,100);
+        // axis.setRangeWithMargins(new Range(1,100));
+        // axis.setUpperBound(2000);
+
+    }
     public static void setBarChartStyle(JFreeChart chart) {
         CategoryPlot categoryplot = chart.getCategoryPlot();// 图本身
         // 设置图的背景为白色
@@ -425,13 +474,7 @@ public class TempTest {
         legendStyle.setHorizontalAlignment(HorizontalAlignment.RIGHT);
 
         // 设置值坐标轴样式
-        ValueAxis rangeAxis = categoryplot.getRangeAxis();
-        // 设置Y轴的提示文字样式
-        rangeAxis.setLabelFont(new Font("微软雅黑", Font.PLAIN, 12));
-        // 设置Y轴刻度线的长度
-        rangeAxis.setTickMarkInsideLength(0);
-        // 设置Y轴刻度上余量比例
-        rangeAxis.setUpperMargin(0.2);
+        setValueAxisStyle(categoryplot.getRangeAxis());
 
         // 设置类别坐标轴样式
         CategoryAxis domainAxis = categoryplot.getDomainAxis();
