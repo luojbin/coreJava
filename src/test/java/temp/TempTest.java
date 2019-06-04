@@ -22,8 +22,10 @@ import org.junit.Test;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -505,5 +507,44 @@ public class TempTest {
         // 设置柱子的阴影，false代表没有阴影
         brender.setShadowVisible(false);
         categoryplot.setRenderer(brender);
+    }
+
+    @Test
+    public void tetttt() throws UnsupportedEncodingException {
+        // 获取当前 JVM 采用的编码, utf-8
+        System.out.println(System.getProperty("file.encoding"));
+
+        String str = "中";
+        char c = '中';
+        byte[] strBytes = str.getBytes();
+        byte[] utfBytes = str.getBytes(StandardCharsets.UTF_8);
+        byte[] gbkBytes = str.getBytes("gbk");
+
+        System.out.println("\n获取中字的 unicode 的二进制表示");
+        System.out.println("0" + Integer.toBinaryString(c));
+        System.out.println(Integer.toHexString(c));
+
+        System.out.println("\n输出中字以系统编码的二进制码");
+        for (byte b : strBytes) {
+            System.out.println(Integer.toBinaryString(b).substring(24));
+        }
+
+        System.out.println("\n输出中字以 utf-8编码的二进制码");
+        for (byte b : utfBytes) {
+            System.out.println(Integer.toBinaryString(b).substring(24));
+        }
+
+        System.out.println("\n输出中字以 gbk 编码的二进制码");
+        for (byte b : gbkBytes) {
+            System.out.println(Integer.toBinaryString(b).substring(24));
+        }
+
+        String gbkStr = new String(utfBytes, "gbk");
+        String utf8Str = new String(utfBytes, StandardCharsets.UTF_8);
+        String isoStr = new String(utfBytes, StandardCharsets.ISO_8859_1);
+
+        System.out.println("gbkStr: " + gbkStr);
+        System.out.println("utf8Str: " + utf8Str);
+        System.out.println("isoStr: " + isoStr);
     }
 }
