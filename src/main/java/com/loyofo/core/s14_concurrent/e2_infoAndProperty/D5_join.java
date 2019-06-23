@@ -1,4 +1,4 @@
-package com.loyofo.core.s14_concurrent.e0_oldDemo;
+package com.loyofo.core.s14_concurrent.e2_infoAndProperty;
 
 /**
  * 线程提供的方法:

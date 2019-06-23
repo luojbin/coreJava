@@ -1,4 +1,4 @@
-package com.loyofo.core.s14_concurrent.e0_oldDemo;
+package com.loyofo.core.s14_concurrent.e4_synchronized;
 
 public class D13_syncStaticBlock {
 
@@ -14,7 +14,7 @@ public class D13_syncStaticBlock {
         t4.start();
     }
 
-    public static void syncWithClass(){
+    public static void syncWithClass() {
         // 对于静态方法, 应该锁其该类的 class 对象
         synchronized (D13_syncStaticBlock.class) {
             Thread t = Thread.currentThread();
@@ -27,7 +27,8 @@ public class D13_syncStaticBlock {
             System.out.println(t.getName() + "离开静态方法");
         }
     }
-    public static void syncWithObject(){
+
+    public static void syncWithObject() {
         // 如果锁不同对象, 则没有意义
         synchronized (new Object()) {
             Thread t = Thread.currentThread();

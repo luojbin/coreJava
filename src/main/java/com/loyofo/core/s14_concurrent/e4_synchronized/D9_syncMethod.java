@@ -1,4 +1,6 @@
-package com.loyofo.core.s14_concurrent.e0_oldDemo;
+package com.loyofo.core.s14_concurrent.e4_synchronized;
+
+import com.loyofo.core.s14_concurrent.e4_synchronized.entity.Table;
 
 /**
  * 当多个线程并发操作同一资源时，由于线程切换时机不确定，导致代码执行顺序出现了混乱，严重时可能会导致系统瘫痪。
@@ -48,21 +50,6 @@ public class D9_syncMethod {
         t1.start();
         t2.start();
 
-    }
-}
-
-class Table {
-    //桌子上有20个豆子
-    private int beans = 20;
-
-    // 添加 synchronized 以避免线程安全问题
-    public synchronized int getBean() {
-        if (beans == 0) {
-            throw new RuntimeException("没有豆子了!");
-        }
-        // 请求线程切换
-        Thread.yield();
-        return beans--;
     }
 }
 

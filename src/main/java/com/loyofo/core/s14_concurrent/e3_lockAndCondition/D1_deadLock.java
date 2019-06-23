@@ -1,8 +1,4 @@
-package com.loyofo.core.s14_concurrent.e1_lock;
-
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+package com.loyofo.core.s14_concurrent.e3_lockAndCondition;
 
 public class D1_deadLock {
     public static void main(String[] args) {
@@ -48,48 +44,6 @@ public class D1_deadLock {
             }
         });
         return t;
-    }
-}
-
-class Bank{
-    private Lock lock = new ReentrantLock();
-    private Condition enoughMoney = lock.newCondition();
-
-    public void transfer(Person from, Person to) throws InterruptedException {
-        lock.lock();
-        try {
-            while(from.getMoney() < 100){
-                System.out.println(from.getName() + ": 我现在没钱, 晚点才能给" + to.getName());
-                enoughMoney.await();
-            }
-            System.out.println(from.getName() + ": 有钱了, 给"+ to.getName() +"转账吧");
-            from.setMoney(from.getMoney() - 100);
-            to.setMoney(to.getMoney() + 100);
-            enoughMoney.signalAll();
-        } finally {
-            lock.unlock();
-        }
-    }
-}
-class Person{
-    private String name;
-    private int money;
-
-    public Person(String name, int money){
-        this.name = name;
-        this.money = money;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
     }
 }
 
