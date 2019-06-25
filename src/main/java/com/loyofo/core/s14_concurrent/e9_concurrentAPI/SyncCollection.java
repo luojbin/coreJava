@@ -1,4 +1,4 @@
-package com.loyofo.core.s14_concurrent.e5_javaAPI;
+package com.loyofo.core.s14_concurrent.e9_concurrentAPI;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,8 +10,11 @@ import java.util.Set;
 
 /**
  * 线程安全的集合与Map
+ * 常用的集合都不是线程安全的, Collections 类可以很方便的创建指定集合的线程安全副本, 线程安全集合中的方法, 都被同步锁保护, 实现线程安全.
+ * 同步集合副本, 其实是原集合的包装类, 所有的方法, 都是在同步块内调用原集合的方法.
+ * 与原集合同步更新. 但如果调用原集合的修改方法, 也会修改同步集合副本而不受锁的保护
  */
-public class D8_collection {
+public class SyncCollection {
     public static void main(String[] args) {
         /*
          * ArrayList与LinkedList都不是线程 安全的
@@ -23,7 +26,13 @@ public class D8_collection {
         list.add("four");
         System.out.println(list.getClass().getName() + list);
         //将给定的List集合转换为线程安全的
-        list = Collections.synchronizedList(list);
+        List clist = Collections.synchronizedList(list);
+        System.out.println(clist.getClass().getName() + clist);
+
+        // 修改list
+        list.add("测试");
+        System.out.println("测试两集合同步更新");
+        System.out.println(clist.getClass().getName() + clist);
         System.out.println(list.getClass().getName() + list);
 
         /*
