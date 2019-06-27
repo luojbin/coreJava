@@ -24,15 +24,15 @@ public class DemoGlobalLog {
         logger.setUseParentHandlers(false);
 
         // 默认能显示的日志记录
-        logger.severe("这是全局日志 severe");
-        logger.warning("这是全局日志 warning");
-        logger.info("这是全局日志 info");
+        logger.severe("这是全局日志 severe-严重");
+        logger.warning("这是全局日志 warning-警告");
+        logger.info("这是全局日志 info-信息");
 
         // 默认不显示的日志记录
-        logger.config("这是全局日志 config");
-        logger.fine("这是全局日志 fine");
-        logger.finer("这是全局日志 finer");
-        logger.finest("这是全局日志 finest");
+        logger.config("这是全局日志 config-配置");
+        logger.fine("这是全局日志 fine-详细");
+        logger.finer("这是全局日志 finer-较详细");
+        logger.finest("这是全局日志 finest-非常详细");
 
         System.out.println("主程序");
     }
