@@ -9,7 +9,6 @@ public class TryFinallyReturn {
             System.out.println("抓到异常: " + e.getMessage());
             System.out.println("还有被抑制的" + e.getSuppressed()[0]);
         }
-
     }
 
     static int get() {
