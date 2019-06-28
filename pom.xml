@@ -33,6 +33,20 @@
             <version>1.0.23</version>
         </dependency>
 
+        <!-- slf4j, 使用 logback 的话会自动引入, 不需手动添加 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!-- logback, slf4j 推荐日志实现 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
 
     </dependencies>
 
