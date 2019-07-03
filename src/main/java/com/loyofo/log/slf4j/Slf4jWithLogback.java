@@ -1,7 +1,5 @@
 package com.loyofo.log.slf4j;
 
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.core.util.StatusPrinter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,9 +25,8 @@ public class Slf4jWithLogback {
         logger.info("使用占位符, 允许任意多个: {}是一个数字, {}是一个字符", 1, 'a');
 
         // 获取 logback 的内部状态, 如果 logback 发生错误, 会自动输出这些内部信息
-        LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-        StatusPrinter.print(lc);
-
+        // LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
+        // StatusPrinter.print(lc);
         /*
          使用 logback 的三个步骤
          1. 配置 logback 的环境,
