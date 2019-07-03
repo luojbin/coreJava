@@ -11,7 +11,7 @@ public class Slf4jWithLogback {
     public static Logger getLogger(String name) 指定记录器的名字
     public static Logger getLogger(Class<?> clazz) 指定记录器所属的类
      */
-    private static Logger logger = LoggerFactory.getLogger("日志器的名字, 默认显示在日志的最前面");
+    private static Logger logger = LoggerFactory.getLogger(Slf4jWithLogback.class);
 
     public static void main(String[] args) {
         // slf4j 提供了5种级别的日志, 默认只记录前面4种, 最低级的 trace 不显示
@@ -27,6 +27,7 @@ public class Slf4jWithLogback {
         // 获取 logback 的内部状态, 如果 logback 发生错误, 会自动输出这些内部信息
         // LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         // StatusPrinter.print(lc);
+
         /*
          使用 logback 的三个步骤
          1. 配置 logback 的环境,
