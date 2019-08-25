@@ -20,9 +20,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.junit.Test;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
@@ -35,6 +33,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author luojbin
@@ -65,7 +66,7 @@ public class TempTest {
         String newCodePrefix = "1234567890".substring(0, 8);
         // 判断当前是几位
 
-        switch ((""+codeNew).length()) {
+        switch (("" + codeNew).length()) {
             case 1:
                 newCodePrefix += "0000" + codeNew;
                 break;
@@ -93,6 +94,7 @@ public class TempTest {
         list.add("a");
         System.out.println(list);
     }
+
     @Test
     public void testFormat() {
         String s1 = String.format("%5d", 1);
@@ -196,7 +198,7 @@ public class TempTest {
         System.out.println(Integer.toBinaryString(Float.floatToIntBits(a7)));
 
 
-        System.out.println(String.format("%05d",1));
+        System.out.println(String.format("%05d", 1));
         // System.out.println(String.format("%032s",Integer.toBinaryString(Float.floatToIntBits(0.5f))));
         // System.out.println(String.format("%032s",Integer.toBinaryString(Float.floatToIntBits(-0.5f))));
     }
@@ -207,14 +209,13 @@ public class TempTest {
         float b = 0.2F;
         float c = 0.3F;
         float d = 0.9F;
-        System.out.println(a+b == c);
-        System.out.println(1-c);
-        System.out.println(c+c+c);
-        System.out.println(c+c);
-        System.out.println(0.6F+c);
+        System.out.println(a + b == c);
+        System.out.println(1 - c);
+        System.out.println(c + c + c);
+        System.out.println(c + c);
+        System.out.println(0.6F + c);
         System.out.println(0.9 == d);
     }
-
 
 
     @Test
@@ -280,16 +281,16 @@ public class TempTest {
     @Test
     public void testGetFont() {
         String[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-        for (String font : fonts ) {
+        for (String font : fonts) {
             System.out.println(font);
         }
     }
 
     @Test
     public void testRando() {
-        for (;;){
+        for (; ; ) {
             int index = (int) (Math.random() * 24);
-            if (index >= 20){
+            if (index >= 20) {
                 System.out.println(index);
             }
         }
@@ -298,7 +299,7 @@ public class TempTest {
     @Test
     public void testBigDecimal() {
         Object s = null;
-        String s1 = (String)s;
+        String s1 = (String) s;
         System.out.println(s1);
         System.out.println(s1);
 
@@ -343,7 +344,7 @@ public class TempTest {
     public void testSbbb() {
         StringBuilder sb = new StringBuilder();
         sb.append("123456789,");
-        System.out.println(sb.substring(0, sb.length()-1));
+        System.out.println(sb.substring(0, sb.length() - 1));
     }
 
     @Test
@@ -395,7 +396,7 @@ public class TempTest {
 
         // 生成柱状图
         JFreeChart barChart = ChartFactory.createBarChart(title, keyLabel, valueLabel, dataset,
-                PlotOrientation.HORIZONTAL, true, true, false );
+                PlotOrientation.HORIZONTAL, true, true, false);
 
         // 格式化图表
         setBarChartStyle(barChart);
@@ -429,7 +430,7 @@ public class TempTest {
         // axis.setLabelAngle(45);
         // 设置坐标轴标签颜色
         // axis.setLabelPaint(Color.RED);
-        axis.setLabelInsets(new RectangleInsets(UnitType.ABSOLUTE, 10,10,10,10));
+        axis.setLabelInsets(new RectangleInsets(UnitType.ABSOLUTE, 10, 10, 10, 10));
 
         // 设置坐标轴标签位置
         axis.setLabelLocation(AxisLabelLocation.HIGH_END);
@@ -455,6 +456,7 @@ public class TempTest {
         // axis.setUpperBound(2000);
 
     }
+
     public static void setBarChartStyle(JFreeChart chart) {
         CategoryPlot categoryplot = chart.getCategoryPlot();// 图本身
         // 设置图的背景为白色
@@ -547,4 +549,82 @@ public class TempTest {
         System.out.println("utf8Str: " + utf8Str);
         System.out.println("isoStr: " + isoStr);
     }
+
+    @Test
+    public void testCharArray() {
+        char[] a1 = {'h', 'e', 'l', 'l', 'o'};
+        System.out.println(a1);
+        System.out.println(a1.toString());
+
+        int[] b1 = {1, 2, 3, 4, 5};
+        System.out.println(b1);
+    }
+
+
+    @Test
+    public void testGetAllMusic() throws IOException {
+        String dirPath = "F:\\Music\\已整理\\";
+        String listPath = "F:\\Music\\已整理\\myMusic.list";
+        String diffPath = "F:\\Music\\已整理\\myMusic.diff";
+
+        String line = "=======================================";
+
+        File dir = new File(dirPath);
+        assertTrue(dir.isDirectory());
+        File listFile = new File(listPath);
+        assertTrue(listFile.exists());
+        File diffFile = new File(diffPath);
+        assertTrue(diffFile.exists());
+
+        // 创建 reader, 读取以前的文件名
+        BufferedReader listReader = new BufferedReader(new FileReader(listFile));
+        // 创建 diffWriter, 用来记录与上次不一致的文件, 可以追加
+        BufferedWriter diffWriter = new BufferedWriter(new FileWriter(diffFile, true));
+
+        // 先记录日期信息
+        diffWriter.write(line);
+        diffWriter.newLine();
+        diffWriter.write(new Date().toString());
+        diffWriter.newLine();
+
+        // 比对列表, 看上次的文件是否还存在
+        int count = 0;
+        String fileName;
+        String filePath;
+        File file;
+        fileName = listReader.readLine();
+        while (fileName != null) {
+            filePath = dirPath + fileName;
+            file = new File(filePath);
+            if (!file.exists()) {
+                // 如果文件不存在, 记录丢失的文件
+                count++;
+                diffWriter.write(fileName);
+                diffWriter.newLine();
+
+            }
+            fileName = listReader.readLine();
+        }
+        // 记录结果
+        diffWriter.write("比对结束, 本次共发现丢失文件: " + count);
+        diffWriter.newLine();
+        diffWriter.write(line);
+
+        // 比对结束, 关闭 diffWriter, listReader
+        diffWriter.newLine();
+        diffWriter.newLine();
+        diffWriter.close();
+        listReader.close();
+        assertEquals(0, count);
+
+        // 没有丢失文件, 写入新的列表文件, 记录当前存在的文件列表
+        BufferedWriter listWriter = new BufferedWriter(new FileWriter(listPath, false));
+        for (String f : dir.list()) {
+            listWriter.write(f);
+            listWriter.newLine();
+        }
+        listWriter.close();
+    }
+
+
 }
