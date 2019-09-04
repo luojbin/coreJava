@@ -33,6 +33,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -627,4 +628,42 @@ public class TempTest {
     }
 
 
+
+    @Test
+    public void testEmptyList() {
+        List<String> list = new ArrayList<>();
+        for (String s : list) {
+            System.out.println(s);
+        }
+    }
+
+    @Test
+    public void testFor() {
+        int[] newGroupIds = new int[]{};
+        List<Integer> currentGroupIds = new ArrayList<Integer>(){{
+            // add(1);
+            // add(2);
+            // add(4);
+        }};
+
+        // 找出被修改的权限组id
+        HashSet<Integer> groupDiff = new HashSet<>();
+        // 减少的权限组: 在新资源列表中查找已有资源, 若找到, 则是需要保留的资源. 找不到的, 就是要移除的资源
+        currentGroupIds.forEach(oldGroupId -> {
+            boolean keepResource = Arrays.stream(newGroupIds).anyMatch(oldGroupId::equals);
+            if (!keepResource) {
+                groupDiff.add(oldGroupId);
+            }
+        });
+
+        // 新增的权限组: 在当前资源列表中, 查找新列表的资源, 若找到, 则是需要保留的资源. 找不到的, 就是要新增的资源
+        Arrays.stream(newGroupIds).forEach(newResource -> {
+            boolean keepResource = currentGroupIds.stream().anyMatch(oldResource -> oldResource.equals(newResource));
+            if (!keepResource) {
+                groupDiff.add(newResource);
+            }
+        });
+
+        System.out.println(groupDiff);
+    }
 }

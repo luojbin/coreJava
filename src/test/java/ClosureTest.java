@@ -51,8 +51,10 @@ public class ClosureTest {
             sVar = sVar + "_lambda内修改";
             this.var = this.var + "_lambda内修改";
 
+            System.out.println("this:" + this);
             System.out.println("var:" + var);// 局部变量, 要求事实上final
             System.out.println("svar:" + sVar);// 外部类的sVar, 不要求final
+            // 此处的 this, 指的是外部类对象, 在 lambda 表达式中, 完全隐藏了内部类对象, 也就没有实例域
             System.out.println("this.var:" + this.var);// 类实例域, 不要求final
             System.out.println("ClosureTest.this.var:" + ClosureTest.this.var);
         });
@@ -91,36 +93,40 @@ public class ClosureTest {
 
     @Test
     public void testInnerClass() {
-        String var = "方法内局部变量";
+        String methodVar = "方法内局部变量";
         String obj = "nothing";
 
         // 尝试外部修改
-        // var = ""; //局部变量要求事实final, 不可修改
+        // methodVar = ""; //局部变量要求事实final, 不可修改
         sVar = sVar + "_testInnerClass()";
         this.var = this.var + "_testInnerClass()";
 
         System.out.println("---------------以下是内部类测试-------------");
         MyConsumer consumer = new MyConsumer();
         consumer.doWithObject(obj, new Consumer<String>() {
-            String sVar = "内部类静态域";
-            String var = "内部类实例域";
+            // String var = "内部类实例域";
 
             @Override
             public void accept(String s) {
-                String var = "内部类方法局部变量";
-
-                // 尝试在内部类方法中修改
-                var = var + "_内部类方法中修改";
-                sVar = sVar + "_内部类方法中修改";
-                this.var = this.var + "_内部类方法中修改";
-                ClosureTest.this.var = ClosureTest.this.var + "_内部类方法中修改";
-                ClosureTest.sVar = ClosureTest.sVar + "_内部类方法中修改";
-
-                System.out.println("var:" + var);
-                System.out.println("svar:" + sVar);
-                System.out.println("this.var:" + this.var);
-                System.out.println("ClosureTest.this.var:" + ClosureTest.this.var);
-                System.out.println("ClosureTest.sVar:" + ClosureTest.sVar);
+                // String var = "内部类方法局部变量";
+                //
+                // // 尝试在内部类方法中修改
+                // // methodVar = ""; // 捕捉的局部变量要求事实final, 不可修改
+                // var = var + "_内部类方法中修改";
+                // this.var = this.var + "_内部类方法中修改";
+                // ClosureTest.this.var = ClosureTest.this.var + "_内部类方法中修改";
+                // sVar = sVar + "_内部类方法中修改";
+                //
+                // // 内部类访问外部方法中的局部变量, 要求事实上 final
+                // // System.out.println("methodVar:" + methodVar);
+                // // 方法中定义的局部变量
+                // System.out.println("var:" + var);
+                // // 此处的 this, 指的是内部类对象
+                // System.out.println("this.var:" + this.var);
+                // // 需要用 外部类型.this 获取外部类对象
+                // System.out.println("ClosureTest.this.var:" + ClosureTest.this.var);
+                // // 内部类访问外部类的静态域
+                // System.out.println("svar:" + sVar);
             }
         });
     }
