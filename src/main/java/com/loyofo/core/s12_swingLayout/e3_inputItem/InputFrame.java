@@ -1,7 +1,5 @@
 package com.loyofo.core.s12_swingLayout.e3_inputItem;
 
-import com.sun.deploy.panel.JavaPanel;
-
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;

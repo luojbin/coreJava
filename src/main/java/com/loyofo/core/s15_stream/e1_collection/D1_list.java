@@ -97,6 +97,73 @@ public class D1_list {
 
         logger.info("过滤结果: {}", aList);
         logger.info("去重结果: {}",distinctList);
-
     }
+
+
+    /**
+     * 通过 filter 在集合中筛选出满足指定条件的元素, 通常会用 collect() 方法收集元素
+     */
+    @Test
+    public void testFilter() {
+        List<String> strList = new ArrayList<>();
+        strList.add("hello");
+        strList.add("apple");
+        strList.add("banana");
+        strList.add("candy");
+        strList.add("dog");
+        strList.add("elephant");
+        strList.add("food");
+        strList.add("apple");
+
+        // 可以使用 collect 收集所有满足条件的
+        List<String> fiveLetter = strList.stream()
+                .filter(s -> s.length() == 5)
+                .collect(Collectors.toList());
+        System.out.println(fiveLetter);
+
+        // 去除重复
+        List<String> fiveLetter2 = strList.stream()
+                .filter(s -> s.length() == 5)
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(fiveLetter2);
+
+        // 可以使用 findAny() 获取任意一个
+        strList.stream()
+                .filter(s -> s.length() == 5)
+                .findAny()
+                .ifPresent(System.out::println);
+
+        // 可以使用 findAny() 获取任意一个
+        strList.stream()
+                .filter(s -> s.length() == 5)
+                .findFirst()
+                .ifPresent(System.out::println);
+    }
+
+    /**
+     * map 是映射, 可以将原始流映射为另一个流, 通常需要用 collect 收集结果
+     */
+    @Test
+    public void testMap() {
+        List<String> origin = new ArrayList<>();
+        origin.add("apple");
+        origin.add("boy");
+        origin.add("cat");
+        origin.add("dog");
+        origin.add("egg");
+        origin.add("food");
+        origin.add("girl");
+        origin.add("hand");
+        origin.add("idea");
+        origin.add("joke");
+        origin.add("king");
+
+        List<String> result = origin.stream()
+                .map(s -> s + s.length())
+                .collect(Collectors.toList());
+        System.out.println(origin);
+        System.out.println(result);
+    }
+
 }
