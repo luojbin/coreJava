@@ -2,22 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.loyofo.core</groupId>
-    <artifactId>spi</artifactId>
+    <groupId>com.loyofo</groupId>
     <version>1.0-SNAPSHOT</version>
+    <artifactId>seal</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>spi-client</module>
-        <module>spi-impl-cat</module>
-        <module>spi-impl-dog</module>
-        <module>spi-impl-tiger</module>
-        <module>spi-impl-monkey</module>
-        <module>spi-interface</module>
+        <module>seal-no-a</module>
+        <module>seal-no-b</module>
+        <module>seal-yes-a</module>
+        <module>seal-yes-b</module>
     </modules>
-
 
 
 </project>
