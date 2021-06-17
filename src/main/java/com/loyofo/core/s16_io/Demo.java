@@ -1,7 +1,11 @@
 package com.loyofo.core.s16_io;
 
+import org.junit.Test;
+
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class Demo {
     public static void main(String[] args) throws Exception{
@@ -39,6 +43,30 @@ public class Demo {
                 // 写入 buf2, 不含最后几位
                 out.write(buf2, 0, n2-5);
             }
+        }
+        //关闭in，out即可
+        in.close();
+        out.close();
+        System.out.println("成功！");
+    }
+
+    @Test
+    public void method2() throws IOException {
+        //打开原始输入文件 D:\Java\IdeaSpace\coreJava\target\classes\1874.mflac
+        FileInputStream in = new FileInputStream("D:/Java/workspace/demo-luojbin/coreJava/target/classes/1877.flac");
+        //打开目标的输出文件
+        FileOutputStream out = new FileOutputStream("d:/test.flac");
+
+        System.out.println("开始！");
+
+        //1K byte
+        //从输入流in中读取尽可能多的byte填充到缓存 buf 中，返回读取个数 1024
+        byte[] outBuf = new byte[1024*8];
+
+        int n1;
+        // 先读一波到输出缓冲区
+        while((n1 = in.read(outBuf))!=-1){
+            out.write(outBuf, 0, n1);
         }
         //关闭in，out即可
         in.close();
