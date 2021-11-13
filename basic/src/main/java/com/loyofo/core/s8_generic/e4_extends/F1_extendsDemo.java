@@ -5,6 +5,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 /**
  * @author luojbin
  * @version 1.0
@@ -31,7 +34,12 @@ public class F1_extendsDemo {
         // 这时 personList 与 teacherList 引用了同一个对象
         // 如果在 personList 中添加 Person 对象, 则对 teacherList 而言是不合法的, 取出对象时出现类型转化异常
         personList.add(new Person());
-        Teacher teacher = teacherList.get(1);// ClassCastException
+        try {
+            Teacher teacher = teacherList.get(1);// ClassCastException
+            fail();
+        } catch (Exception e) {
+            assertTrue(e instanceof ClassCastException);
+        }
     }
 
     @Test

@@ -17,11 +17,11 @@ public class F2_GetSet {
      */
     public void testExtends() {
         ArrayList<Cat> cats = new ArrayList<>();
-
+        cats.add(new Cat());
         // ? extends Animal, 表示列表内可能是 Animal 的任意子类, Cat 是 Animal 的子类, 满足要求, 可以转换
         ArrayList<? extends Animal> animals = cats;
 
-        // 由于不确定里面的元素是什么类型, 因此不接受任何类型的实参, 不能往里面加东西
+        // 但由于不确定里面的元素是什么类型, 因此不接受任何类型的实参, 不能往里面加东西
         // animals.add(new Animal());
         // animals.add(new Dog());
         // animals.add(new Cat());

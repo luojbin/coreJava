@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * @author luojbin
  * @version 1.0
@@ -79,8 +81,12 @@ public class F1_Class {
         l.add(2);
         l.add(3);
 
-        List<Integer> unmodifyList = Collections.unmodifiableList(l);
-        unmodifyList.add(4);
+        try {
+            List<Integer> unmodifyList = Collections.unmodifiableList(l);
+            unmodifyList.add(4);
+        } catch (Exception e) {
+            assertTrue(e instanceof UnsupportedOperationException);
+        }
 
     }
 }

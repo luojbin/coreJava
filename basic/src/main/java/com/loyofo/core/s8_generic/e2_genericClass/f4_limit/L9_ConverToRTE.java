@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.io.FileNotFoundException;
 
+import static org.junit.Assert.assertTrue;
+
 abstract class ThreadWithAnyException {
     public static <T extends Throwable> T returnAs(Throwable t) throws T {
         // 如果是返回 T, 则会在调用处进行类型转换, 会出现类型转换异常
@@ -42,27 +44,35 @@ public class L9_ConverToRTE {
     @Test
     public void test1() {
         // 业务逻辑中可以抛出任意类型的异常
-        new ThreadWithAnyException(){
-            @Override
-            public void body() throws Exception {
-                throw new FileNotFoundException();
-            }
-        }.toThread().run();
+        try {
+            new ThreadWithAnyException(){
+                @Override
+                public void body() throws Exception {
+                    throw new FileNotFoundException();
+                }
+            }.toThread().run();
+        } catch (Exception e) {
+            assertTrue(e instanceof FileNotFoundException);
+        }
     }
 
     @Test
     public void test2() {
         // 使用原始的Thread, 必须在业务 run 方法中捕获所有受查异常, 并包装成非受查异常
-        new Thread(){
-            @Override
-            public void run() {
-                try {
-                    throw new FileNotFoundException();
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
+        try {
+            new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        throw new FileNotFoundException();
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-            }
-        }.run();
+            }.run();
+        } catch (Exception e) {
+            assertTrue(e instanceof RuntimeException);
+        }
     }
 }
 

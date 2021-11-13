@@ -34,7 +34,8 @@ public class ChartFactoryTest {
 		String valueAxisLabel = "金额 (mm)";
 		JFreeChart chart = MyChartFactory.createBarChart(title,
 				categoryAxisLabel, valueAxisLabel, series, categories);
-		File file = new File("jfreechart/barChart.jpg");
+		File file = new File("target/barChart.jpg");
+		System.out.println(file.getAbsolutePath());
 		int width = 1024;
 		int height = 800;
 		ChartUtils.saveChartAsJPEG(file, chart, width, height);
@@ -54,7 +55,7 @@ public class ChartFactoryTest {
 		String title = "Contents of Highsoft's weekly fruit delivery";
 		JFreeChart chart = MyChartFactory
 				.createPieChart(title, categories, datas);
-		File file = new File("jfreechart\\pieChart.jpeg");
+		File file = new File("target/pieChart.jpeg");
 		int width = 1024;
 		int height = 420;
 		ChartUtils.saveChartAsJPEG(file, chart, width, height);
@@ -86,7 +87,7 @@ public class ChartFactoryTest {
 		String valueAxisLabel = "Rainfall (mm)";
 		JFreeChart chart = MyChartFactory.createLineChart(title,
 				categoryAxisLabel, valueAxisLabel, series, categories);
-		File file = new File("jfreechart\\lineChart.jpeg");
+		File file = new File("target/lineChart.jpeg");
 		int width = 1024;
 		int height = 420;
 		ChartUtils.saveChartAsJPEG(file, chart, width, height);
@@ -117,7 +118,7 @@ public class ChartFactoryTest {
 		String rangeAxisLabel = "Rainfall (mm)";
 		JFreeChart chart = MyChartFactory.createStackedBarChart(title,
 				domainAxisLabel, rangeAxisLabel, series, categories);
-		File file = new File("jfreechart\\stackedBarChart.jpeg");
+		File file = new File("target/stackedBarChart.jpeg");
 		int width = 1024;
 		int height = 420;
 		ChartUtils.saveChartAsJPEG(file, chart, width, height);

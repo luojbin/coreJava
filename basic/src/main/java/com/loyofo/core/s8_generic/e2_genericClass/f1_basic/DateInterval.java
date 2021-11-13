@@ -18,6 +18,7 @@ public class DateInterval extends Pair<LocalDate> {
         DateInterval interval = new DateInterval();
         Pair<LocalDate> pair = interval;
         LocalDate date = LocalDate.of(1,1,1);
+        pair.setFirst(date);
         pair.setSecond(date);
     }
 }

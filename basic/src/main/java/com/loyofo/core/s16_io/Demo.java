@@ -1,5 +1,6 @@
 package com.loyofo.core.s16_io;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.FileInputStream;
@@ -51,9 +52,10 @@ public class Demo {
     }
 
     @Test
+    @Ignore
     public void method2() throws IOException {
         //打开原始输入文件 D:\Java\IdeaSpace\coreJava\target\classes\1874.mflac
-        FileInputStream in = new FileInputStream("D:/Java/workspace/demo-luojbin/coreJava/target/classes/1877.flac");
+        FileInputStream in = new FileInputStream("D:/Java/workspace/demo-luojbin/coreJava/basic/target/classes/1877.flac");
         //打开目标的输出文件
         FileOutputStream out = new FileOutputStream("d:/test.flac");
 

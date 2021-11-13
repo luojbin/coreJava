@@ -1,5 +1,6 @@
 package com.loyofo.core.s7_asserLog.e2_assert;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -22,6 +23,7 @@ public class AssertDemo {
      * 使用 junit 方法测试, 开启断言
      */
     @Test
+    @Ignore
     public void test() {
         AssertMethod.testAssert();
     }
