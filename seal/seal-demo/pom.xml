@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <groupId>com.loyofo</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <artifactId>seal-demo</artifactId>
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <!--
+            如果 gav 能定位到本项目其他模块, idea 会自动使用该模块, 而不是 systemPath 指定的 jar 包, 原因不详,
+            暂时先修改一个不存在的 group=com.loyofo.fake
+        -->
+        <dependency>
+            <groupId>com.loyofo.fake</groupId>
+            <artifactId>seal-no-a</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/seal-no-a.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.loyofo.fake</groupId>
+            <artifactId>seal-no-b</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/seal-no-b.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.loyofo.fake</groupId>
+            <artifactId>seal-yes-a</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/seal-yes-a.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.loyofo.fake</groupId>
+            <artifactId>seal-yes-b</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/seal-yes-b.jar</systemPath>
+        </dependency>
+    </dependencies>
+</project>

@@ -11,14 +11,17 @@
 
     <artifactId>seal-yes-b</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.loyofo222</groupId>
-            <artifactId>seal-yes-a</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/seal-yes-a-1.0-SNAPSHOT.jar</systemPath>
-        </dependency>
-    </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
