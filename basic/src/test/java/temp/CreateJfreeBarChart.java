@@ -59,7 +59,7 @@ public class CreateJfreeBarChart {
         JFreeChart chart = ChartFactory.createBarChart(getChartTitle(),
                 getDomainAxisLabel(), getRangeAxisLabel(), getDataset());
         iSetBarChart(chart);
-        File file = new File("demoChart.jpg");
+        File file = new File("basic/target/demoChart.jpg");
         ChartUtils.saveChartAsJPEG(file, chart, 600,400);
         // WriteChartAsImage.writeChartAsImage(chart, getSaveImgUrlAndName(), getWidth(),
         //         getHeight());

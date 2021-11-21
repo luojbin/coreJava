@@ -405,7 +405,7 @@ public class TempTest {
         // 格式化图表
         setBarChartStyle(barChart);
 
-        File file = new File("demoChart.jpg");
+        File file = new File("target/demoChart2.jpg");
         ChartUtils.saveChartAsJPEG(file, barChart, 800, 500);
     }
 
