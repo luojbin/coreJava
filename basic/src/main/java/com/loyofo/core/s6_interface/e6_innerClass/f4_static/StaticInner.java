@@ -1,6 +1,6 @@
 package com.loyofo.core.s6_interface.e6_innerClass.f4_static;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class StaticInner {
     @Test

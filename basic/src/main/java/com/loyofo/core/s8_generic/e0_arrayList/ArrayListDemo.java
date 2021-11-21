@@ -1,6 +1,6 @@
 package com.loyofo.core.s8_generic.e0_arrayList;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 

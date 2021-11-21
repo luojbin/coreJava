@@ -1,7 +1,7 @@
 package com.loyofo.core.s5_reflex.e2_Field;
 
 import com.loyofo.core.s6_interface.e0_demo.Employee;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 

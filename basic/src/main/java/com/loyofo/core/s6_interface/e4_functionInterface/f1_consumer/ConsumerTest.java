@@ -1,6 +1,6 @@
 package com.loyofo.core.s6_interface.e4_functionInterface.f1_consumer;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author luojbin

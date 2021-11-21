@@ -1,7 +1,8 @@
 package com.loyofo.core.s16_io;
 
-import org.junit.Ignore;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -52,7 +53,7 @@ public class Demo {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void method2() throws IOException {
         //打开原始输入文件 D:\Java\IdeaSpace\coreJava\target\classes\1874.mflac
         FileInputStream in = new FileInputStream("D:/Java/workspace/demo-luojbin/coreJava/basic/target/classes/1877.flac");

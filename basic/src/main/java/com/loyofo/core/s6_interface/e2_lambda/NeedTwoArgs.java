@@ -1,6 +1,6 @@
 package com.loyofo.core.s6_interface.e2_lambda;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author luojbin

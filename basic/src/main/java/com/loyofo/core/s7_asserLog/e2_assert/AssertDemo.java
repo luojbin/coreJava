@@ -1,7 +1,7 @@
 package com.loyofo.core.s7_asserLog.e2_assert;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * 默认情况下, 断言不会被执行, 需要手动在 jvm 参数中指定 -ea
@@ -23,7 +23,7 @@ public class AssertDemo {
      * 使用 junit 方法测试, 开启断言
      */
     @Test
-    @Ignore
+    @Disabled
     public void test() {
         AssertMethod.testAssert();
     }

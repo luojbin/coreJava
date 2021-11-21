@@ -1,7 +1,7 @@
 import com.loyofo.core.s6_interface.e0_demo.Employee;
 import com.loyofo.core.s6_interface.e0_demo.EmpployeeAgeComparator;
 import com.loyofo.core.s6_interface.e0_demo.EmpployeeNameComparator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 

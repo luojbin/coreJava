@@ -8,7 +8,7 @@ public class SealDemo {
         SealCat cat = new SealCat();
         SealDog dog = new SealDog();
 
-        System.out.println(cat.toString());
-        System.out.println(dog.toString());
+        System.out.println(cat);
+        System.out.println(dog);
     }
 }

@@ -8,7 +8,7 @@ public class UnsealDemo {
         UnsealCat cat = new UnsealCat();
         UnsealDog dog = new UnsealDog();
 
-        System.out.println(cat.toString());
-        System.out.println(dog.toString());
+        System.out.println(cat);
+        System.out.println(dog);
     }
 }

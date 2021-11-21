@@ -1,6 +1,6 @@
 package com.loyofo.core.s8_generic.e3_genericMethod;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MethodDemo {
 

@@ -2,7 +2,7 @@ package com.loyofo.core.s5_reflex.e1_Class;
 
 import com.loyofo.core.s6_interface.e0_demo.Employee;
 import com.loyofo.core.s6_interface.e0_demo.Manager;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Constructor;
 

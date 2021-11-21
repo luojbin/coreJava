@@ -6,7 +6,7 @@ import com.loyofo.core.s6_interface.e7_proxy.api.Spider;
 import com.loyofo.core.s6_interface.e7_proxy.api.impl.RealDog;
 import com.loyofo.core.s6_interface.e7_proxy.api.impl.RealHero;
 import com.loyofo.core.s6_interface.e7_proxy.api.impl.RealSpider;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Proxy;
 

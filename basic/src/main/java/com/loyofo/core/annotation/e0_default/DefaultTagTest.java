@@ -1,7 +1,7 @@
 // @DefaultTag 需要用在 package-info.java 中
 package com.loyofo.core.annotation.e0_default;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

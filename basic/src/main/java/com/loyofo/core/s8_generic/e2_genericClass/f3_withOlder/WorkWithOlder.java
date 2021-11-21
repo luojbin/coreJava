@@ -1,7 +1,7 @@
 package com.loyofo.core.s8_generic.e2_genericClass.f3_withOlder;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Array;
 import java.time.format.TextStyle;

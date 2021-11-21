@@ -1,10 +1,10 @@
 package com.loyofo.core.s8_generic.e2_genericClass.f4_limit;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 abstract class ThreadWithAnyException {
     public static <T extends Throwable> T returnAs(Throwable t) throws T {

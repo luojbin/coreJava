@@ -1,6 +1,6 @@
 package com.loyofo.core.s6_interface.e6_innerClass.f2_local;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Comparator;

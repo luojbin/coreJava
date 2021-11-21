@@ -2,7 +2,7 @@ package com.loyofo.core.s6_interface.e5_methodRef;
 
 import com.loyofo.core.s6_interface.e4_functionInterface.f2_supplier.MySupplier;
 import com.loyofo.core.s6_interface.e4_functionInterface.f4_function.MyFunction;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Comparator;

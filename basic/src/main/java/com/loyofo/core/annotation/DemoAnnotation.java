@@ -2,7 +2,7 @@ package com.loyofo.core.annotation;
 
 import com.loyofo.core.annotation.e1_meta.MyTag;
 import com.loyofo.core.annotation.e1_meta.MyTags;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 

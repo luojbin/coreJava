@@ -1,6 +1,5 @@
 package temp;
 
-import com.loyofo.core.s6_interface.e0_demo.Employee;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
@@ -17,8 +16,8 @@ import org.jfree.chart.title.TextTitle;
 import org.jfree.chart.ui.*;
 import org.jfree.chart.util.UnitType;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.io.*;
@@ -34,7 +33,8 @@ import java.util.*;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * @author luojbin
@@ -285,7 +285,7 @@ public class TempTest {
         }
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testRando() {
         for (; ; ) {
@@ -566,7 +566,7 @@ public class TempTest {
 
 
     @Test
-    @Ignore
+    @Disabled
     public void testGetAllMusic() throws IOException {
         String dirPath = "F:\\Music\\已整理\\";
         String listPath = "F:\\Music\\已整理\\myMusic.list";

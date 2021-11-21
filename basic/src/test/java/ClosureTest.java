@@ -1,5 +1,5 @@
 import com.loyofo.core.s6_interface.e4_functionInterface.f1_consumer.MyConsumer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.function.Consumer;
 

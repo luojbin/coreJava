@@ -1,7 +1,7 @@
 package com.loyofo.core.s15_stream.e1_create;
 
 import com.loyofo.core.common.DemoUtil;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
